@@ -9,3 +9,6 @@ class Post(models.Model):
 	#thumbnail
 	def __str__(self):
 		return self.title
+
+	def abstractBody(self):
+		return self.body[:150]+'...'
