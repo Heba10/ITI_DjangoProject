@@ -1,3 +1,19 @@
-body{
-	background-color: yellow;
+.post{
+	background-color: white;
+	font-family: "serif";
+	border: 2px solid black;
+	margin: 5px;
+	padding: 10px;
+}
+
+.title{
+
+}
+
+.content{
+	background-color: grey;
+}
+
+h1.text-center{
+	border: 2px solid black;
 }

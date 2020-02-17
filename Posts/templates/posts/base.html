@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Posts</title>
+	
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'postsStatic/css/style.css' %}">
+	<link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+</head>
+<body>
+	<header>
+		<h1 class="text-center">Blog Header</h1>
+	</header>
+	<div class="container">
+		<div class="row">
+			<div class="col-3">
+				<div><h1>Category</h1></div>
+			</div>
+			<div class="col">
+				{% block content %}
+					
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+
+	<footer>
+		<h1 class="text-center">Blog Footer</h1>
+	</footer>
+
+	<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+</body>
+</html>

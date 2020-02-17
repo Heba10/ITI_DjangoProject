@@ -1,22 +1,15 @@
-{% load static %}
-{% load humanize %}
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Posts</title>
-	
-	<link rel="stylesheet" type="text/css" href="{% static 'postsStatic/css/style.css' %}">
-</head>
-<body>
-	<h1>Post List</h1>
-	<div class="Posts">
-		{%for post in posts%}
-			<div>
-				<h3><a href="#">{{post.title}}</a></h3>
-				<p><small>{{post.date|naturaltime}}</small></p>
-				<p>{{post.abstractBody}}</p>
-			</div>
-		{%endfor%}
-	</div>
-</body>
-</html>
+{% extends "./base.html" %}
+
+	{% block content %}
+		{% load humanize %}
+		<h1>Post List</h1>
+		<div class="posts">
+			{%for post in posts%}
+				<div class="post">
+					<h3 class="title"><a href="#">{{post.title}}</a></h3>
+					<small>{{post.date|naturaltime}}</small>
+					<p class="content">{{post.abstractBody}}</p>
+				</div>
+			{%endfor%}
+		</div>
+	{% endblock %}
