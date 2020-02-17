@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from django.http import HttpResponse
-# from .models import Posts
+# from django.http import HttpResponse
+from .models import Post
 
 def post_list(request):
-	return HttpResponse("hello world")
+	posts = Post.objects.all().order_by('date')
+	return render(request,'posts/post_list.html', {'posts':posts})
 
