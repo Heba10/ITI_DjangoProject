@@ -9,12 +9,15 @@
 					<h3 class="title"><a href="#">{{post.title}}</a></h3>
 					<small>{{post.date|naturaltime}}</small>
 					<p class="content">{{post.abstractBody}}</p>
+
 				</div>
 			{%endfor%}
 		</div>
 	{% endblock %}
 	{% block cat %}
+		<li> <a href="/posts/">All</a> </li>
 		{%for cat in cats%}
-			<li> <a href="#">{{cat.name}}</a> </li>
+			<li> <a href="/posts/listcat/{{cat.id}}">{{cat.name}}</a> </li>
 		{%endfor%}
+
 	{% endblock %}
