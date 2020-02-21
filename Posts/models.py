@@ -8,6 +8,14 @@ class Category(models.Model):
 
 	def __str__(self):
 		return self.name
+
+class Tags(models.Model):
+	tag_name = models.CharField(max_length=20)
+
+	def __str__(self):
+		return self.tag_name
+
+
 		
 class Post(models.Model):
 	title = models.CharField(max_length=100)
@@ -17,6 +25,7 @@ class Post(models.Model):
 	cat_name =models.ForeignKey(Category, on_delete=models.DO_NOTHING)
 	author = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
 	thumbnail = models.ImageField(default='default.png', blank=True)
+	tag_name = models.ManyToManyField(Tags,db_table="PostTags" )
 
 	def __str__(self):
 		return self.title
@@ -56,12 +65,5 @@ class Reply(models.Model):
 
 	def __str__(self):
 		return '%s %s' % (self.user_name, self.comment_name)
-
-class Tags(models.Model):
-	tag_name = models.CharField(max_length=15)
-	post_name = models.ManyToManyField(Post,db_table="PostTags" )
-
-	def __str__(self):
-		return '%s %s' % (self.tag_name, self.post_name)
 
 
