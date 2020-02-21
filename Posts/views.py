@@ -20,4 +20,4 @@ def listCat(request,catid):
 	posts = Post.objects.filter(cat_name_id=catid)
 	cats = Category.objects.all()
 	context={'posts':posts,'cats':cats}
-	return render(request,'posts/post_list.html', context)
+	return render(request,'posts/index.html', context)
