@@ -16,9 +16,15 @@ def displayPost(request,postid):
 	comments = Comments.objects.filter(post_name_id=postid)
 	data = []
 	for comment in comments :
-		reply = Reply.objects.get(comment_name_id=comment.id)
-		dic = {'comm':comment , 'rep':reply}
-		data.append(dic)
+		try:
+			reply = Reply.objects.get(comment_name_id=comment.id)
+			dic = {'comm':comment , 'rep':reply}
+		except Exception as e:
+			dic={'comm':comment }
+		finally:
+			data.append(dic)
+		
+		
 
 	context={'post':post,'data':data}
 	return render(request, 'posts/single.html',context)

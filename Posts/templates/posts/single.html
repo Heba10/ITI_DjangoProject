@@ -46,25 +46,25 @@
                                 <img src="{% static 'publicStatic/images/avatar.jpg' %}" alt="Image placeholder">
                             </div>
                             <div class="comment-body">
-                                <h3>Jean Doe</h3>
+                                <h3>{{d.comm.user_name}}</h3>
                                 <div class="meta">January 9, 2018 at 2:21pm</div>
                                 <p>{{d.comm.content}}</p>
                                 <p><a href="#" class="reply rounded">Reply</a></p>
                             </div>
-
+                            {% if d.rep %}
                             <ul class="children">
                                 <li class="comment">
                                     <div class="vcard">
                                         <img src="{% static 'publicStatic/images/avatar.jpg' %}" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
-                                        <h3>Jean Doe</h3>
+                                        <h3>{{d.rep.user_name}}</h3>
                                         <div class="meta">January 9, 2018 at 2:21pm</div>
                                         <p>{{d.rep.content}}</p>
-                                        <p><a href="#" class="reply rounded">Reply</a></p>
                                     </div>
                                 </li>
                             </ul>
+                            {% endif %}
                         </li>
                         {% endfor%}
                     </ul>
