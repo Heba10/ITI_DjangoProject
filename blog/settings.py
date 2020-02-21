@@ -122,6 +122,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
 #   Access Static Files Using Namespaces
+    ("publicStatic", os.path.join(BASE_DIR,'static/')),
     ("ourBlogStatic", os.path.join(BASE_DIR,'ourBlog/static/')),
     ("postsStatic", os.path.join(BASE_DIR,'Posts/static/')),
 ]
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
