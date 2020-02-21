@@ -123,3 +123,6 @@ USE_TZ = True
 
 STATIC_URL = os.path.join(BASE_DIR,'ourBlog/static/')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL ='home' 
+#navigate to the home instanse of profile location
