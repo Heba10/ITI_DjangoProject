@@ -6,8 +6,8 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.homePage),
 	url(r'^about$', views.about),
-	url(r'^(?P<slug>[\w-]+)/$', views.displayPost, name="postDetails"),
-
+	# url(r'^(?P<slug>[\w-]+)/$', views.displayPost, name="postDetails"),
+	path('<postid>', views.displayPost),
 	path('listcat/<catid>', views.listCat),#i will try to fix it with url #osama
 	# url(r'^listcat/{id}$', views.listCat),
 
