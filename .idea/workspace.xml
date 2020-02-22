@@ -2,9 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,13 +25,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1XtMx4TSAGNwEARE8P954BinNjo" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -51,12 +56,63 @@
       <option name="presentableId" value="Default" />
       <updated>1581861180900</updated>
     </task>
+    <task id="LOCAL-00001" summary="blog">
+      <created>1581868977552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581868977552</updated>
+    </task>
+    <task id="LOCAL-00002" summary="admin UI">
+      <created>1582322759772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582322759772</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="blog" />
+    <MESSAGE value="admin UI" />
+    <option name="LAST_COMMIT_MESSAGE" value="admin UI" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="593" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1581861192867">
+    <state x="417" y="358" width="598" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581879136412">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="593" y="407" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1581861192867" />
+    <state x="417" y="358" width="598" height="397" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1581879136412" />
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582322754713">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582322754713" />
+    <state x="264" y="153" width="915" height="800" key="DiffContextDialog" timestamp="1582322629382">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="264" y="153" width="915" height="800" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582322629382" />
+    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582322776857">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582322776857" />
+    <state x="593" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582211273651">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="593" y="407" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582211273651" />
+    <state x="384" y="272" width="672" height="678" key="search.everywhere.popup" timestamp="1581889325502">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="384" y="272" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1581889325502" />
   </component>
 </project>

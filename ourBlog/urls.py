@@ -17,5 +17,6 @@ from django.urls import path
 from ourBlog import views
 
 urlpatterns = [
+    path('home/',views.home)
 
 ]
