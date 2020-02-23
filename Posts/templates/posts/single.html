@@ -21,7 +21,7 @@
                 <div class="pt-5">
                     <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
                 </div>
-
+                {%if request.user.is_authenticated%}
                 <div class="container">
                     <div class="row text-center smaller bg-light">
                         <div class="col-1">
@@ -37,6 +37,12 @@
                         </div>
                     </div>
                 </div>
+              {% else %}
+              <h5 class="meta" style="color: rgb(255,0,0);" > nfortunately you can't see a likes on this posts subscribe now 
+              with us to know everything new <a href="/register">Register</a></h5>
+
+              {% endif%}
+
                 <div class="pt-5">
                     <h3 class="mb-5">6 Comments</h3>
                     <ul class="comment-list">
