@@ -120,7 +120,7 @@
                         </li>
                     </ul>
                     <!-- END comment-list -->
-
+                    {%if request.user.is_authenticated%}
                     <div class="comment-form-wrap pt-5" id="comment">
                         <h3 class="mb-5">Leave a comment</h3>
                         <form action="#" class="p-5 bg-light">
@@ -135,6 +135,16 @@
 
                         </form>
                     </div>
+                    {% else %}
+                    <h5 class="meta" style="color: rgb(255,0,0);" > unfortunately you can't make a comment subscribe now 
+                    with us to know everything new  <a href="/register">Register</a></h5>
+                 
+                       
+                
+
+
+                    {% endif%}
+
                 </div>
 
             </div>
