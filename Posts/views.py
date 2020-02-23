@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 from .models import Post , Category ,Comments,Reply, Reaction
 import re
 
@@ -63,19 +63,19 @@ def addComment(request,postid): #the worst function i had done shitty code i kno
 		if (result):
 			comm = Comments(post_name=post,user_name=uname,content=con)
 			comm.save()
-		#i want call function display post here but i cant i will try later #osama
-		post = Post.objects.get(id=postid)
-		cats = Category.objects.all()
-		comments = Comments.objects.filter(post_name_id=postid)
-		data = []
-		for comment in comments :
-			try:
-				reply = Reply.objects.get(comment_name_id=comment.id)
-				dic = {'comm':comment , 'rep':reply}
-			except Exception as e:
-				dic={'comm':comment }
-			finally:
-				data.append(dic)
+		
+		return HttpResponseRedirect('/posts/'+postid )
 
-		context={'post':post,'data':data,'cats':cats}
-		return render(request, 'posts/single.html',context)
+
+
+def addReply(request,comid):
+	if request.method =="POST":
+		comment = Comments.objects.get(id = comid)
+		uname = request.user
+		con=request.POST.get('message')
+		mptrn= r"^[\S][\S ]+$"
+		result = re.match(mptrn, con)
+		if(result):
+			rep=Reply(user_name=uname,comment_name=comment,content=con)
+			rep.save();
+		return HttpResponseRedirect('/posts/'+str(comment.post_name_id))

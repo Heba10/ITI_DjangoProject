@@ -43,8 +43,10 @@
                     </div>
                 </div>
                 <div class="pt-5">
+                   
                     <h3 class="mb-5">6 Comments</h3>
                     <ul class="comment-list">
+
                         {% for d in data %}
                         <li class="comment">
                             <div class="vcard">
@@ -54,8 +56,24 @@
                                 <h3>{{d.comm.user_name}}</h3>
                                 <div class="meta">January 9, 2018 at 2:21pm</div>
                                 <p>{{d.comm.content}}</p>
-                                <p><a href="#" class="reply rounded">Reply</a></p>
+                                
+                                <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
+                                <p><a data-toggle="collapse" href="#ddd" role="button">reply</a></p>
                             </div>
+                            <div class="collapse" id="ddd">
+                               <form action="/posts/{{d.comm.id}}/addreply" method="post" class="p-5 bg-light">
+                                {%csrf_token%}
+                                    <div class="form-group">
+                                        <label for="message">Reply</label>
+                                        <input type="textarea" name="message" cols="30" rows="4" class="form-control" required>
+                                       <!--  <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="ADD" class="btn btn-primary">
+                                    </div>
+                                </form>
+                            </div>
+                            
                             {% if d.rep %}
                             <ul class="children">
                                 <li class="comment">

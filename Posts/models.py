@@ -62,6 +62,7 @@ class Reply(models.Model):
 	user_name = models.CharField(max_length=25)
 	comment_name = models.OneToOneField(Comments,on_delete=models.CASCADE)
 	content = models.CharField(max_length=200)
+	date=models.DateTimeField(auto_now_add=True)
 
 	def __str__(self):
 		return '%s %s' % (self.user_name, self.comment_name)

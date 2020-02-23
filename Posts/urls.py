@@ -12,6 +12,7 @@ urlpatterns = [
 	# url(r'^listcat/{id}$', views.listCat),
 	
     url(r'^like/(?P<postId>[\w]+)/(?P<userId>[\w]+)/(?P<reactState>[\w]+)/(?P<refresh>[\w]+)$', views.getData),
-    path('<postid>/addcomment',views.addComment)
+    path('<postid>/addcomment',views.addComment),
+    path('<comid>/addreply',views.addReply),
 
 ]
