@@ -60,7 +60,7 @@ class Comments(models.Model):
 
 class Reply(models.Model):
 	user_name = models.CharField(max_length=25)
-	comment_name = models.OneToOneField(Comments,on_delete=models.CASCADE)
+	comment_name = models.ForeignKey(Comments,on_delete=models.CASCADE)
 	content = models.CharField(max_length=200)
 	date=models.DateTimeField(auto_now_add=True)
 
@@ -68,3 +68,8 @@ class Reply(models.Model):
 		return '%s %s' % (self.user_name, self.comment_name)
 
 
+class BadWord(models.Model):
+	word =models.CharField(max_length=10)
+
+	def __str__(self):
+		return self.word

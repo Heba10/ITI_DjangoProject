@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse,HttpResponseRedirect
-from .models import Post , Category ,Comments,Reply, Reaction
+from .models import Post , Category ,Comments,Reply, Reaction,BadWord
 import re
 
 def homePage(request):
@@ -61,6 +61,13 @@ def addComment(request,postid): #the worst function i had done shitty code i kno
 		mptrn= r"^[\S][\S ]+$"
 		result = re.match(mptrn, con)
 		if (result):
+			words =BadWord.objects.all()
+			for word in words:
+				rep=""
+				size=len(word.word)
+				for i in range(size):
+					rep+="*"
+				con = con.replace(word.word,rep)
 			comm = Comments(post_name=post,user_name=uname,content=con)
 			comm.save()
 		
