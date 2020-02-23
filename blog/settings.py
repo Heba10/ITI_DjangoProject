@@ -137,6 +137,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-LOGIN_REDIRECT_URL ='posts' 
+LOGIN_REDIRECT_URL ='/posts'  
 #navigate to the home instanse of profile location
 

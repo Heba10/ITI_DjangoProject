@@ -59,10 +59,11 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                                <!-- <a class="dropdown-item" href="index.html">Home</a> -->
-                                                {% block cat %}
-
-                                                {% endblock %}
+                                                <a class="dropdown-item" href="index.html">Home</a>
+                                                <a class="dropdown-item" href="catagory.html">Catagory</a>
+                                                <a class="dropdown-item" href="single-blog.html">Single Blog</a>
+                                                <a class="dropdown-item" href="regular-page.html">Regular Page</a>
+                                                <a class="dropdown-item" href="contact.html">Contact</a>
                                             </div>
                                         </li>
                                         <li class="nav-item">
@@ -70,8 +71,12 @@
                                         </li>
                                         <li class="nav-item">
                                             <span class="nav-link">
+                                                {%if request.user.is_authenticated%}
+                                                 <a href="/logout">Logout</a>
+                                                 {% else %}
                                                 <a href="/login">Login</a>/
                                                 <a href="/register">Register</a>
+                                                {% endif%}
                                             </span>
                                         </li>
                                     </ul>
