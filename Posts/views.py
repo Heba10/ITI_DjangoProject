@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Post , Category ,Comments,Reply
+from .models import Post , Category ,Comments,Reply, Reaction
 
 def homePage(request):
 	posts = Post.objects.all().order_by('date')
@@ -34,3 +34,20 @@ def listCat(request,catid):
 	cats = Category.objects.all()
 	context={'posts':posts,'cats':cats}
 	return render(request,'posts/index.html', context)
+
+
+def getData(request, postId, userId, reactState, refresh):
+	# postId = request.GET['postId']
+	# userId = request.GET['userId']
+	# reactState = request.GET['reactStatex']
+	# refresh = request.GET['refreshx']
+	reaction, created = Reaction.objects.get_or_create(post_name_id=postId, user_name__username=userId)
+	if(refresh=='0'):
+		reaction.react=reactState
+		reaction.save()
+	else:
+		pass
+	# reaction.save()
+	# reaction = Reaction.objects.get(post_name_id=postId, user_name__username=userId)
+	return HttpResponse( reaction.react)
+	# return HttpResponse('hello'+postId+'hello')

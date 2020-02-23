@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-emotion = (('like','like'),('dislike','dislike'))
+emotion = (('like','like'),('dislike','dislike'),('none','none'))
 
 
 class Category(models.Model):
@@ -23,7 +23,7 @@ class Post(models.Model):
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
 	cat_name =models.ForeignKey(Category, on_delete=models.DO_NOTHING)
-	author = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+	author = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	thumbnail = models.ImageField(default='default.png', blank=True)
 	tag_name = models.ManyToManyField(Tags,db_table="PostTags" )
 
@@ -35,15 +35,15 @@ class Post(models.Model):
 
 
 class Reaction(models.Model):
-	user_name =models.CharField(max_length=25)
+	user_name =models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 	post_name =models.ForeignKey(Post, on_delete=models.CASCADE)
-	react =models.CharField(max_length=7,choices=emotion,default='like')
+	react =models.CharField(max_length=7,choices=emotion,default='none')
 
 	def __str__(self):
 		return '%s %s %s' % (self.post_name, self.user_name ,self.react)
 
 class Subscribes(models.Model):
-	user_name =models.CharField(max_length=25)
+	user_name =models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
 	cat_name =models.ForeignKey(Category, on_delete=models.DO_NOTHING)
 
 	def __str__(self):

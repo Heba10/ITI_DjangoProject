@@ -69,7 +69,11 @@
                                             <a class="nav-link" href="about">About</a>
                                         </li>
                                         <li class="nav-item">
-                                            <span class="nav-link"><a href="#">Login</a>/<a href="#">Register</a></span>
+                                            {% if request.user.is_authenticated %}
+                                                <span class="nav-link"><a href="#">Logout</a></span>
+                                            {% else %}
+                                                <span class="nav-link"><a href="#">Login</a>/<a href="#">Register</a></span>
+                                            {% endif %}
                                         </li>
                                     </ul>
 
@@ -147,7 +151,85 @@
         <script src="{% static 'publicStatic/js/bootstrap-datepicker.min.js' %}"></script>
         <script src="{% static 'publicStatic/js/aos.js' %}"></script>
         <script src="{% static 'publicStatic/js/main.js' %}"></script>
+        <script>
+            let like = document.querySelector("#like");
+            let imgState = document.querySelector("#imgState");
+            let imgAdd = document.createElement("img");
+            likeState = like.textContent;
 
+            getFirstValue(likeState,1);
+
+            like.addEventListener('click', (ev)=>{
+                console.log('addEventListener')
+                if(like.textContent=='like')
+                {
+                    AffectLike();
+                    getFirstValue('like',0);
+                }
+                else if(like.textContent=='dislike')
+                {
+                    AffectDislike();
+                    getFirstValue('dislike',0);
+                } 
+            });
+
+            // function chooseReact()
+            // {
+            //     console.log("done");
+            //     let pick = document.createElement('p');
+            //     let like = document.createElement('span');
+            //     let dislike = document.createElement('span');
+            //     pick.appendChild(like);
+            //     pick.appendChild(dislike);
+            //     like.appendChild(pick);
+            //     pick.style.zIndex="1";
+            // }
+            
+            function AffectLike()
+            {
+                imgAdd.src="{% static 'publicStatic/images/dislike2.png' %}";
+                imgAdd.width="20";
+                imgAdd.hieght="20";
+                imgState.insertBefore(imgAdd, imgState.firstChild);
+            }
+            function AffectDislike()
+            {
+                imgAdd.src="{% static 'publicStatic/images/like.png' %}";
+                imgAdd.width="20";
+                imgAdd.hieght="20";
+                imgState.insertBefore(imgAdd, imgState.firstChild);
+            }
+
+            function getFirstValue(reactStatex, refreshx)
+            {
+                postId='{{post.id}}';
+                userId='{{request.user}}';
+                const Http = new XMLHttpRequest();
+                
+                const url=`/posts/like/${postId}/${userId}/${reactStatex}/${refreshx}`;
+                Http.open("GET", url);
+                Http.send();
+
+                Http.onreadystatechange = (e) => {
+                  // console.log(Http.response)
+                    if (Http.readyState==4 && Http.status==200)
+                    {
+                        let likeStatex = Http.response
+                        if(likeStatex=='like')
+                        {
+                            console.log(likeStatex);
+                            like.textContent='dislike';
+                        }
+                        else if(likeStatex=='dislike')
+                        {
+                            console.log(likeStatex);
+                            like.textContent='like';
+                        }
+                        Http.abort();
+                    }
+                }
+            }
+        </script>
 
     </body>
 </html>
