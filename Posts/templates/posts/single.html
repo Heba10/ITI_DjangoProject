@@ -19,7 +19,12 @@
 
 
                 <div class="pt-5">
-                    <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+                    <p>Category:  <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a>
+                      Tags: 
+                        {% for tag in post.tag_name.all %}
+                        <a href="">{{tag.tag_name}}</a>, 
+                        {% endfor %}
+                    </p>
                 </div>
 
                 <div class="container">
@@ -95,3 +100,11 @@
     </div>
 </section>
 {% endblock %}
+
+{% block cat %}
+
+    {%for cat in cats%}
+        <a class="dropdown-item" href="/posts/listcat/{{cat.id}}">{{cat.name}}</a>   
+    {%endfor%}
+    
+{%endblock%}

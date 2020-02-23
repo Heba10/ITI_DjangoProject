@@ -11,8 +11,9 @@ def homePage(request):
 def about(request):
 	return render(request,'posts/about.html')
 
-def displayPost(request,postid):
+def displayPost(request,postid):#osama will rewrite this function to be simple
 	post = Post.objects.get(id=postid)
+	cats = Category.objects.all()
 	comments = Comments.objects.filter(post_name_id=postid)
 	data = []
 	for comment in comments :
@@ -26,7 +27,7 @@ def displayPost(request,postid):
 		
 		
 
-	context={'post':post,'data':data}
+	context={'post':post,'data':data,'cats':cats}
 	return render(request, 'posts/single.html',context)
 
 def listCat(request,catid):
