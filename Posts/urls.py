@@ -19,5 +19,6 @@ urlpatterns = [
     path('<comid>/addreply',views.addReply),
 
     url(r'^searchResult$', views.getSearchData),
+    path('listtag/<tagid>',views.listTags)
 
 ]

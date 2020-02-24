@@ -115,29 +115,37 @@ def addReply(request,comid):
 
 
 def getSearchData(request):
-	if request.method =="GET":
-		requiredSearch = request.GET['requiredSearch']
-		# cat = Category.objects.get(name=requiredSearch)
-		# post = Post.objects.filter(cat_name=cat)
-		# tag = Tags.objects.filter(tag_name=requiredSearch)
-		# return HttpResponse("heelllo")
-		# if(requiredSearch=="none"):
-		# 	return HttpResponseRedirect('/posts/')
-		# else:
-		tagPtrn=r"^#[\S]+$"
-		titlePtrn=r"^[\S][\S ]+$"
-		if(re.match(tagPtrn, requiredSearch)):
-			try:
-				tag=Tags.objects.get(tag_name=requiredSearch)
-				posts=Post.objects.filter(tag_name=tag)
-				context={'posts':posts}
-			except Exception as e:
-				context={}
-		elif(re.match(titlePtrn, requiredSearch)):
-			posts=Post.objects.filter(title__contains=requiredSearch)
+	# if request.method =="GET":
+	requiredSearch = request.GET['requiredSearch']
+	# cat = Category.objects.get(name=requiredSearch)
+	# post = Post.objects.filter(cat_name=cat)
+	# tag = Tags.objects.filter(tag_name=requiredSearch)
+	# return HttpResponse("heelllo")
+	# if(requiredSearch=="none"):
+	# 	return HttpResponseRedirect('/posts/')
+	# else:
+	tagPtrn=r"^#[\S]+$|^%23[\S]+$"
+	titlePtrn=r"^[\S][\S ]+$"
+	if(re.match(tagPtrn, requiredSearch)):
+		try:
+			tag=Tags.objects.get(tag_name=requiredSearch)
+			posts=Post.objects.filter(tag_name=tag)
 			context={'posts':posts}
-		else:
-			context={}
+		except Exception as e:
+			context={'x':requiredSearch}
+	elif(re.match(titlePtrn, requiredSearch)):
+		posts=Post.objects.filter(title__contains=requiredSearch)
+		context={'posts':posts}
+	else:
+		context={'x':requiredSearch}
 
-		return render(request,'posts/index.html', context)
-	return HttpResponseRedirect('/posts/')
+	return render(request,'posts/index.html', context)
+	# return HttpResponseRedirect('/posts/')
+
+
+def listTags(request,tagid):
+	tag=Tags.objects.get(id=tagid)
+	posts=Post.objects.filter(tag_name=tag)
+	cats = Category.objects.all()
+	context={'posts':posts,'cats':cats}
+	return render(request,'posts/index.html', context)

@@ -25,7 +25,7 @@
                     <p>Category:  <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a>
                       Tags: 
                         {% for tag in post.tag_name.all %}
-                        <a href="/posts/searchResult?requiredSearch={{tag.tag_name}}">{{tag.tag_name}}</a>, 
+                        <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
                         {% endfor %}
                     </p>
                 </div>
