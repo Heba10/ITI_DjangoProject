@@ -124,7 +124,7 @@ def getSearchData(request):
 	# if(requiredSearch=="none"):
 	# 	return HttpResponseRedirect('/posts/')
 	# else:
-	tagPtrn=r"^#[\S]+$|^%23[\S]+$"
+	tagPtrn=r"^#[\S]+$"
 	titlePtrn=r"^[\S][\S ]+$"
 	if(re.match(tagPtrn, requiredSearch)):
 		try:
@@ -132,12 +132,12 @@ def getSearchData(request):
 			posts=Post.objects.filter(tag_name=tag)
 			context={'posts':posts}
 		except Exception as e:
-			context={'x':requiredSearch}
+			context={}
 	elif(re.match(titlePtrn, requiredSearch)):
 		posts=Post.objects.filter(title__contains=requiredSearch)
 		context={'posts':posts}
 	else:
-		context={'x':requiredSearch}
+		context={}
 
 	return render(request,'posts/index.html', context)
 	# return HttpResponseRedirect('/posts/')
