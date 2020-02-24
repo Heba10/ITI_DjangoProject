@@ -21,11 +21,11 @@
                 <div class="pt-5">
                     <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
                 </div>
-
+                <div style="border: 2px solid #cecbcb;">
                 <div class="container">
                     <div class="row text-center smaller bg-light">
                       {% if request.user.is_authenticated %}
-                        <div class="col-2" id="imgState">
+                        <div class="col-4" style="color: #2f89fc;" id="imgState">
                             <u id="like">like</u>
                         </div>
                         {% endif %}
@@ -36,6 +36,15 @@
                             </a>
                         </div>
                     </div>
+                    <div class="row text-center smaller bg-light">
+                        <div class="col-2 ml-1 mr-1" id="likeNum">
+                            
+                        </div>
+                        <div class="col-2 ml-1" id="dislikeNum">
+                            
+                        </div>
+                    </div>
+                </div>
                 </div>
                 <div class="pt-5">
                     <h3 class="mb-5">6 Comments</h3>
@@ -100,6 +109,8 @@
     let like = document.querySelector("#like");
     let imgState = document.querySelector("#imgState");
     let imgAdd = document.createElement("img");
+    let likeNum = document.querySelector("#likeNum");
+    let dislikeNum = document.querySelector("#dislikeNum");
     likeState = like.textContent;
 
     getFirstValue(likeState,1);
@@ -108,12 +119,12 @@
         console.log('addEventListener')
         if(like.textContent=='like')
         {
-            AffectLike();
+            // AffectLike();
             getFirstValue('like',0);
         }
         else if(like.textContent=='dislike')
         {
-            AffectDislike();
+            // AffectDislike();
             getFirstValue('dislike',0);
         } 
     });
@@ -160,20 +171,31 @@
             if (Http.readyState==4 && Http.status==200)
             {
                 let likeStatex = Http.response
-                if(likeStatex=='like')
+                likeStateJASON = JSON.parse(likeStatex)
+
+                console.log(JSON.parse(likeStatex));
+                if(likeStateJASON.reactType=='like')
                 {
                     console.log(likeStatex);
                     like.textContent='dislike';
+                    AffectLike();
                 }
-                else if(likeStatex=='dislike')
+                else if(likeStateJASON.reactType=='dislike')
                 {
                     console.log(likeStatex);
                     like.textContent='like';
+                    AffectDislike();
                 }
+                likeNum.textContent=likeStateJASON.likeReact+" like"
+                dislikeNum.textContent=likeStateJASON.dislikeReact+" dislike"
                 Http.abort();
             }
         }
     }
+
+    // like.addEventListener('mouseover', (ev)=>{
+    //     console.log("over")
+    // });
 </script>
 
 {% endblock %}

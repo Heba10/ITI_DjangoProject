@@ -46,7 +46,11 @@ def getData(request):
 		reaction.save()
 	else:
 		pass
-	return HttpResponse( reaction.react)
+	likeReact = Reaction.objects.filter(react="like").count()
+	dislikeReact = Reaction.objects.filter(react="dislike").count()
+
+
+	return HttpResponse(json.dumps({'reactType':reaction.react, 'likeReact':likeReact, 'dislikeReact':dislikeReact}))
 
 def getSubscribeData(request):
 	userId = request.user
