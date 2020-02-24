@@ -11,15 +11,22 @@
                 <div class="post-content-body">
                     <div class="row mb-5 mt-3">
                         <div class="col-md-12 mb-4">
+                            {% if post.thumbnail.url != "/media/default.png" %}
                             <img src="{{post.thumbnail.url}}" alt="Image placeholder" class="img-fluid rounded">
+                            {% endif %}
                         </div>
                     </div>
-                    <p>{{post.abstractBody}}</p>
+                    <p>{{post.body}}</p>
                 </div>
 
 
                 <div class="pt-5">
-                    <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+                    <p>Category:  <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a>
+                      Tags: 
+                        {% for tag in post.tag_name.all %}
+                        <a href="">{{tag.tag_name}}</a>, 
+                        {% endfor %}
+                    </p>
                 </div>
                 <div style="border: 2px solid #cecbcb;">
                 <div class="container">
@@ -47,8 +54,10 @@
                 </div>
                 </div>
                 <div class="pt-5">
+                   
                     <h3 class="mb-5">6 Comments</h3>
                     <ul class="comment-list">
+
                         {% for d in data %}
                         <li class="comment">
                             <div class="vcard">
@@ -58,8 +67,24 @@
                                 <h3>{{d.comm.user_name}}</h3>
                                 <div class="meta">January 9, 2018 at 2:21pm</div>
                                 <p>{{d.comm.content}}</p>
-                                <p><a href="#" class="reply rounded">Reply</a></p>
+                                
+                                <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
+                                <p><a data-toggle="collapse" href="#ddd" role="button">reply</a></p>
                             </div>
+                            <div class="collapse" id="ddd">
+                               <form action="/posts/{{d.comm.id}}/addreply" method="post" class="p-5 bg-light">
+                                {%csrf_token%}
+                                    <div class="form-group">
+                                        <label for="message">Reply</label>
+                                        <input type="textarea" name="message" cols="30" rows="4" class="form-control" required>
+                                       <!--  <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="ADD" class="btn btn-primary">
+                                    </div>
+                                </form>
+                            </div>
+                            
                             {% if d.rep %}
                             <ul class="children">
                                 <li class="comment">
@@ -81,14 +106,15 @@
 
                     <div class="comment-form-wrap pt-5" id="comment">
                         <h3 class="mb-5">Leave a comment</h3>
-                        <form action="#" class="p-5 bg-light">
-
+                        <form action="/posts/{{post.id}}/addcomment" method="post" class="p-5 bg-light">
+                            {%csrf_token%}
                             <div class="form-group">
                                 <label for="message">Comment</label>
-                                <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea>
+                                <input type="textarea" name="message" cols="30" rows="4" class="form-control" required>
+                               <!--  <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea> -->
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Post Comment" class="btn btn-primary">
+                                <input type="submit" value="ADD" class="btn btn-primary">
                             </div>
 
                         </form>
@@ -104,6 +130,7 @@
     </div>
 </section>
 {% endblock %}
+<<<<<<< HEAD
 {% block scriptBlock %}
 <script>
     let like = document.querySelector("#like");

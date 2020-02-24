@@ -15,4 +15,9 @@ urlpatterns = [
     url(r'^like$', views.getData),
     url(r'^subscribe$', views.getSubscribeData),
 
+    path('<postid>/addcomment',views.addComment),
+    path('<comid>/addreply',views.addReply),
+
+    url(r'^searchResult$', views.getSearchData),
+
 ]

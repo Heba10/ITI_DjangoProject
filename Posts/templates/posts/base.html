@@ -40,16 +40,16 @@
                         <div class="col-12">
                             <nav class="navbar navbar-expand-lg">
 
-                                <a class="navbar-brand" href="index.html">Logo</a>
+                                <a class="navbar-brand" href="/posts">Logo</a>
 
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="true" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                                 <div class="navbar-collapse collapse show" id="worldNav" style="">
                                     <div id="search-wrapper">
-                                        <form action="#">
-                                            <input type="text" id="search" placeholder="Search something...">
+                                        <form method="get" action="/posts/searchResult">
+                                            <input type="text" placeholder="Search something..." name="requiredSearch">
                                             <div id="close-icon"></div>
-                                            <input class="d-none" type="submit" value="">
+                                            <input class="d-none" id="searchText" type="submit" value="">
                                         </form>
                                     </div>
                                     <ul class="navbar-nav ml-auto">
