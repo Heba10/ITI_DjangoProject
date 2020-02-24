@@ -1,5 +1,6 @@
 {% extends "./base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <section class="site-section py-lg">
     <div class="container">
@@ -24,7 +25,7 @@
                     <p>Category:  <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a>
                       Tags: 
                         {% for tag in post.tag_name.all %}
-                        <a href="">{{tag.tag_name}}</a>, 
+                        <a href="/posts/searchResult?requiredSearch={{tag.tag_name}}">{{tag.tag_name}}</a>, 
                         {% endfor %}
                     </p>
                 </div>
@@ -59,7 +60,7 @@
               </div>
                 <div class="pt-5">
                    
-                    <h3 class="mb-5">6 Comments</h3>
+                    <h3 class="mb-5 text-secondary">{{data|length}} Comment</h3>
                     <ul class="comment-list">
 
                         {% for d in data %}
@@ -69,8 +70,8 @@
                             </div>
                             <div class="comment-body">
                                 <h3>{{d.comm.user_name}}</h3>
-                                <div class="meta">January 9, 2018 at 2:21pm</div>
-                                <p>{{d.comm.content}}</p>
+                                <div class="meta text-secondary ">{{d.comm.date|naturaltime}}</div>
+                                <p class="text-dark">{{d.comm.content}}</p>
                                 
                                 <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
                                 <p><a data-toggle="collapse" href="#ddd" role="button">reply</a></p>
@@ -97,7 +98,7 @@
                                     </div>
                                     <div class="comment-body">
                                         <h3>{{d.rep.user_name}}</h3>
-                                        <div class="meta">January 9, 2018 at 2:21pm</div>
+                                        <div class="meta">{{d.rep.date|naturaltime}}</div>
                                         <p>{{d.rep.content}}</p>
                                     </div>
                                 </li>
