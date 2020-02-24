@@ -2,7 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/categories.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/header.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainContent.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainSideBar.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/postsList.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/usersTable.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/wordsForbidden.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/admin.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/urls.py" afterDir="false" />
@@ -22,7 +31,13 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="admin" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="ProjectId" id="1XtMx4TSAGNwEARE8P954BinNjo" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
@@ -38,9 +53,12 @@
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ourBlog/templates/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ourBlog/templates/admin/content" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ourBlog/templates/admin" />
     </key>
@@ -90,10 +108,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="admin UI" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="417" y="358" width="598" height="397" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1581879136412">
+    <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582508885457">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="417" y="358" width="598" height="397" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1581879136412" />
+    <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582508885457" />
     <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582322754713">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -102,6 +120,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="264" y="153" width="915" height="800" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582322629382" />
+    <state x="1010" y="127" width="810" height="851" key="ShowDiffWithBranchDialog" timestamp="1582538777482">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1010" y="127" width="810" height="851" key="ShowDiffWithBranchDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582538777482" />
     <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582322776857">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>

@@ -4,7 +4,7 @@ from django.contrib import admin
 from django.shortcuts import render
 
 from django.utils.html import format_html
-from .models import Post, Category
+from Posts.models import Post, Category
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -26,7 +26,6 @@ class PostAdmin(admin.ModelAdmin):
     def action_btn(self, obj):
         html = '<a class="btn btn-default" href="/admin/ourBlog/post' + str(obj.id) + '/change/">Edit</a>'
         html = '<a class="btn btn-default" href="/admin/ourBlog/post' + str(obj.id) + '/delete/">Delete</a>'
-
         return format_html(html)
 
     action_btn.short_description = "Action"

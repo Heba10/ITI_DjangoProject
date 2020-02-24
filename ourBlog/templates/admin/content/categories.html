@@ -1,0 +1,26 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+ {% load i18n static %}
+{% block mainContent %}
+ <table class="table table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Category Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+   {%for cat in cat%}
+    <tr>
+      <td>{{cat.name}}</td>
+
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+  {%endfor%}
+  </tbody>
+</table>
+
+{% endblock %}
+
