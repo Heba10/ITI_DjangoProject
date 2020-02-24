@@ -123,7 +123,17 @@ def getSearchData(request):
 	# if(requiredSearch=="none"):
 	# 	return HttpResponseRedirect('/posts/')
 	# else:
-	cat = Category.objects.get(name=requiredSearch)
-	post = Post.objects.filter(cat_name=cat).order_by('date')
-	context={'posts':post}
+	tagPtrn=r"^#[\S]+$"
+	titlePtrn=r"^[\S][\S ]+$"
+	if(re.match(tagPtrn, requiredSearch)):
+		tag=Tags.objects.get(tag_name=requiredSearch)
+		posts=Post.objects.filter(tag_name=tag)
+		context={'posts':posts}
+	elif(re.match(titlePtrn, requiredSearch)):
+		posts=Post.objects.filter(title__contains=requiredSearch)
+		context={'posts':posts}
+	else:
+		context={}
+
+	
 	return render(request,'posts/index.html', context)
