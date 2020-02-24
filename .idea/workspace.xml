@@ -4,9 +4,9 @@
     <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainSideBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainSideBar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/content/postsList.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/postsList.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/content/usersTable.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/usersTable.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -80,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1582322759772</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="modify">
+      <created>1582558979155</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582558979155</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="Vcs.Log.History.Properties">
@@ -97,17 +104,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="blog" />
     <MESSAGE value="admin UI" />
-    <option name="LAST_COMMIT_MESSAGE" value="admin UI" />
+    <MESSAGE value="modify" />
+    <option name="LAST_COMMIT_MESSAGE" value="modify" />
   </component>
   <component name="WindowStateProjectService">
     <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582508885457">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582508885457" />
-    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582558978262">
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582578599376">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582558978262" />
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582578599376" />
     <state x="264" y="153" width="915" height="800" key="DiffContextDialog" timestamp="1582322629382">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
@@ -116,10 +124,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="1010" y="127" width="810" height="851" key="ShowDiffWithBranchDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582538777482" />
-    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582322776857">
+    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582559014379">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582322776857" />
+    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582559014379" />
     <state x="593" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582211273651">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
