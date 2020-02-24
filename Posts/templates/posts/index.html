@@ -6,14 +6,16 @@
     <div class="card-columns">
         {% for post in posts %}
         <div class="card">
+            {% if post.thumbnail.url != "/media/default.png" %}
             <img class="card-img-top" src="{{post.thumbnail.url}}" alt="Card image cap">
+            {% endif %}
             <div class="card-body">
                 <div class="post-meta align-items-center text-left clearfix">
                     <span class="d-inline-block mt-1 text-d text-muted">By <a href="#">{{post.author}}</a></span>
                     <span class="d-inline-block mt-1 text-muted"> category:<a href="#">{{post.cat_name}}</a></span>
                     <span class="text-muted">&nbsp;-&nbsp; {{post.date|naturaltime}}</span>
                 </div>
-                <h2><a href="{{post.slug}}">{{post.title}}</a></h2>
+                <h2><a href="{{post.id}}">{{post.title}}</a></h2>
                 <p class="card-text">{{post.abstractBody}}..</p>
             </div>
         </div>
@@ -57,10 +59,4 @@
     </div> -->
 </div>
 {% endblock %}
-{% block cat %}
 
-    {%for cat in cats%}
-        <a class="dropdown-item" href="/posts/listcat/{{cat.id}}">{{cat.name}}</a>   
-    {%endfor%}
-    
-{%endblock%}
