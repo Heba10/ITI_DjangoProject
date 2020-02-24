@@ -40,16 +40,16 @@
                         <div class="col-12">
                             <nav class="navbar navbar-expand-lg">
 
-                                <a class="navbar-brand" href="index.html">Logo</a>
+                                <a class="navbar-brand" href="/posts">Logo</a>
 
                                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#worldNav" aria-controls="worldNav" aria-expanded="true" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
 
                                 <div class="navbar-collapse collapse show" id="worldNav" style="">
                                     <div id="search-wrapper">
-                                        <form action="#">
-                                            <input type="text" id="search" placeholder="Search something...">
+                                        <form method="get" action="/posts/searchResult">
+                                            <input type="text" placeholder="Search something..." name="requiredSearch">
                                             <div id="close-icon"></div>
-                                            <input class="d-none" type="submit" value="">
+                                            <input class="d-none" id="searchText" type="submit" value="">
                                         </form>
                                     </div>
                                     <ul class="navbar-nav ml-auto">
@@ -59,20 +59,40 @@
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                                                <a class="dropdown-item" href="index.html">Home</a>
+                                                <a class="dropdown-item" href="catagory.html">Catagory</a>
+                                                <a class="dropdown-item" href="single-blog.html">Single Blog</a>
+                                                <a class="dropdown-item" href="regular-page.html">Regular Page</a>
+                                                <a class="dropdown-item" href="contact.html">Contact</a>
+
                                                 <!-- <a class="dropdown-item" href="index.html">Home</a> -->
                                                 {% block cat %}
-
+                                                    {%for cat in cats%}
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="text-left">
+                                                                <a class="dropdown-item" href="/posts/listcat/{{cat.id}}">{{cat.name}}</a>
+                                                            </div>
+                                                            <button type="button" class="btn btn-outline-dark pw-2 text-right mt-1 ml-auto mr-3" id="subscribe{{cat.id}}"data-toggle="button">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    {%endfor%}
                                                 {% endblock %}
+
                                             </div>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="about">About</a>
                                         </li>
                                         <li class="nav-item">
-                                            <span class="nav-link">
-                                                <a href="/login">Login</a>/
-                                                <a href="/register">Register</a>
-                                            </span>
+                                            {% if request.user.is_authenticated %}
+                                                <span class="nav-link"><a href="/logout">Logout</a></span>
+                                            {% else %}
+                                                <span class="nav-link"><a href="/login">Login</a>/<a href="/register">Register</a></span>
+                                            {% endif %}
                                         </li>
                                     </ul>
 
@@ -150,7 +170,106 @@
         <script src="{% static 'publicStatic/js/bootstrap-datepicker.min.js' %}"></script>
         <script src="{% static 'publicStatic/js/aos.js' %}"></script>
         <script src="{% static 'publicStatic/js/main.js' %}"></script>
+        <script>
+            subscribes=[]
+            getFirstValue()
+            {%for cat in cats%}
+            let subscribe{{cat.id}} = document.querySelector("#subscribe{{cat.id}}");
+            
+            subscribe{{cat.id}}.addEventListener('click', (ev)=>{
+                console.log("inner0");
+                // getFirstValue(1, 0);
+                catNum={{cat.id}}
+                refresh=0
+
+                const Http = new XMLHttpRequest();
+                const url=`/posts/subscribe?catNum=${catNum}&refresh=${refresh}`;
+                Http.open("GET", url);
+                Http.send();
+                console.log("hi")
+                console.log(subscribe{{cat.id}})
+                Http.onreadystatechange = (e) => {
+                  // console.log(Http.response)
+                    if (Http.readyState==4 && Http.status==200)
+                    {
+                        let catState = Http.response
+                        catStateJson = JSON.parse(catState)
+                        catNums = catStateJson.categoryNum
+                       
+                            console.log(catNums)
+                            // subscribes
+                            if(subscribe{{cat.id}}.innerText.includes('+'))
+                            {
+                                subscribe{{cat.id}}.innerText='-';
+                                subscribe{{cat.id}}.style.background="black";
+                                subscribe{{cat.id}}.style.color="white";
+                            }
+                            else if(subscribe{{cat.id}}.innerText.includes('-'))
+                            {
+                                subscribe{{cat.id}}.innerText='+';
+                                subscribe{{cat.id}}.style.background="white";
+                                subscribe{{cat.id}}.style.color="black";
+                            } 
+                        Http.abort();
+                    }
+                }
 
 
+                console.log("inner");
+            });
+            subscribes=subscribes.concat(subscribe{{cat.id}});
+            // console.log(subscribes)
+            {% endfor %}
+
+
+            function getFirstValue(catNum=0, refresh=1)
+            {
+                const Http = new XMLHttpRequest();
+                const url=`/posts/subscribe?catNum=${catNum}&refresh=${refresh}`;
+                Http.open("GET", url);
+                Http.send();
+                console.log("hi")
+                Http.onreadystatechange = (e) => {
+                  // console.log(Http.response)
+                    if (Http.readyState==4 && Http.status==200)
+                    {
+                        let catState = Http.response
+                        catStateJson = JSON.parse(catState)
+                        catNums = catStateJson.categoryNum
+                        if(refresh==1)
+                        {
+                            // catNums = catStateJson.categoryNum
+                            for(let cat=0; cat< catNums.length; cat++)
+                            {
+                                x=subscribes[catNums[cat]-1]
+                                if(x.innerText.includes('+'))
+                                {
+                                    x.innerText='-'
+                                    x.style.background="black";
+                                    x.style.color="white";
+                                }
+                            }
+                        }
+                        else
+                        {
+                            console.log(catNums)
+                            // subscribes
+                            // if("subscribe"+catNum.innerText=='+')
+                            // {
+                            //     "subscribe"+catNum.innerText='-'
+                            // }
+                            // else if("subscribe"+catNum.innerText=='-')
+                            // {
+                            //     "subscribe"+catNum.innerText='+'
+                            // } 
+                        }
+                        Http.abort();
+                    }
+                }
+            }
+        </script>
+
+        {% block scriptBlock %}
+        {% endblock %}
     </body>
 </html>
