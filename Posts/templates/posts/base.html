@@ -61,7 +61,18 @@
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                                 <!-- <a class="dropdown-item" href="index.html">Home</a> -->
                                                 {% block cat %}
-
+                                                    {%for cat in cats%}
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="text-left">
+                                                                <a class="dropdown-item" href="/posts/listcat/{{cat.id}}">{{cat.name}}</a>
+                                                            </div>
+                                                            <button type="button" class="btn btn-outline-dark pw-2 text-right mt-1 ml-auto mr-3" id="subscribe{{cat.id}}"data-toggle="button">
+                                                                +
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                    {%endfor%}
                                                 {% endblock %}
                                             </div>
                                         </li>
@@ -152,78 +163,97 @@
         <script src="{% static 'publicStatic/js/aos.js' %}"></script>
         <script src="{% static 'publicStatic/js/main.js' %}"></script>
         <script>
-            let like = document.querySelector("#like");
-            let imgState = document.querySelector("#imgState");
-            let imgAdd = document.createElement("img");
-            likeState = like.textContent;
-
-            getFirstValue(likeState,1);
-
-            like.addEventListener('click', (ev)=>{
-                console.log('addEventListener')
-                if(like.textContent=='like')
-                {
-                    AffectLike();
-                    getFirstValue('like',0);
-                }
-                else if(like.textContent=='dislike')
-                {
-                    AffectDislike();
-                    getFirstValue('dislike',0);
-                } 
-            });
-
-            // function chooseReact()
-            // {
-            //     console.log("done");
-            //     let pick = document.createElement('p');
-            //     let like = document.createElement('span');
-            //     let dislike = document.createElement('span');
-            //     pick.appendChild(like);
-            //     pick.appendChild(dislike);
-            //     like.appendChild(pick);
-            //     pick.style.zIndex="1";
-            // }
+            subscribes=[]
+            getFirstValue()
+            {%for cat in cats%}
+            let subscribe{{cat.id}} = document.querySelector("#subscribe{{cat.id}}");
             
-            function AffectLike()
-            {
-                imgAdd.src="{% static 'publicStatic/images/dislike2.png' %}";
-                imgAdd.width="20";
-                imgAdd.hieght="20";
-                imgState.insertBefore(imgAdd, imgState.firstChild);
-            }
-            function AffectDislike()
-            {
-                imgAdd.src="{% static 'publicStatic/images/like.png' %}";
-                imgAdd.width="20";
-                imgAdd.hieght="20";
-                imgState.insertBefore(imgAdd, imgState.firstChild);
-            }
+            subscribe{{cat.id}}.addEventListener('click', (ev)=>{
+                console.log("inner0");
+                // getFirstValue(1, 0);
+                catNum={{cat.id}}
+                refresh=0
 
-            function getFirstValue(reactStatex, refreshx)
-            {
-                postId='{{post.id}}';
-                userId='{{request.user}}';
                 const Http = new XMLHttpRequest();
-                
-                const url=`/posts/like/${postId}/${userId}/${reactStatex}/${refreshx}`;
+                const url=`/posts/subscribe?catNum=${catNum}&refresh=${refresh}`;
                 Http.open("GET", url);
                 Http.send();
-
+                console.log("hi")
+                console.log(subscribe{{cat.id}})
                 Http.onreadystatechange = (e) => {
                   // console.log(Http.response)
                     if (Http.readyState==4 && Http.status==200)
                     {
-                        let likeStatex = Http.response
-                        if(likeStatex=='like')
+                        let catState = Http.response
+                        catStateJson = JSON.parse(catState)
+                        catNums = catStateJson.categoryNum
+                       
+                            console.log(catNums)
+                            // subscribes
+                            if(subscribe{{cat.id}}.innerText.includes('+'))
+                            {
+                                subscribe{{cat.id}}.innerText='-';
+                                subscribe{{cat.id}}.style.background="black";
+                                subscribe{{cat.id}}.style.color="white";
+                            }
+                            else if(subscribe{{cat.id}}.innerText.includes('-'))
+                            {
+                                subscribe{{cat.id}}.innerText='+';
+                                subscribe{{cat.id}}.style.background="white";
+                                subscribe{{cat.id}}.style.color="black";
+                            } 
+                        Http.abort();
+                    }
+                }
+
+
+                console.log("inner");
+            });
+            subscribes=subscribes.concat(subscribe{{cat.id}});
+            // console.log(subscribes)
+            {% endfor %}
+
+
+            function getFirstValue(catNum=0, refresh=1)
+            {
+                const Http = new XMLHttpRequest();
+                const url=`/posts/subscribe?catNum=${catNum}&refresh=${refresh}`;
+                Http.open("GET", url);
+                Http.send();
+                console.log("hi")
+                Http.onreadystatechange = (e) => {
+                  // console.log(Http.response)
+                    if (Http.readyState==4 && Http.status==200)
+                    {
+                        let catState = Http.response
+                        catStateJson = JSON.parse(catState)
+                        catNums = catStateJson.categoryNum
+                        if(refresh==1)
                         {
-                            console.log(likeStatex);
-                            like.textContent='dislike';
+                            // catNums = catStateJson.categoryNum
+                            for(let cat=0; cat< catNums.length; cat++)
+                            {
+                                x=subscribes[catNums[cat]-1]
+                                if(x.innerText.includes('+'))
+                                {
+                                    x.innerText='-'
+                                    x.style.background="black";
+                                    x.style.color="white";
+                                }
+                            }
                         }
-                        else if(likeStatex=='dislike')
+                        else
                         {
-                            console.log(likeStatex);
-                            like.textContent='like';
+                            console.log(catNums)
+                            // subscribes
+                            // if("subscribe"+catNum.innerText=='+')
+                            // {
+                            //     "subscribe"+catNum.innerText='-'
+                            // }
+                            // else if("subscribe"+catNum.innerText=='-')
+                            // {
+                            //     "subscribe"+catNum.innerText='+'
+                            // } 
                         }
                         Http.abort();
                     }
@@ -231,5 +261,7 @@
             }
         </script>
 
+        {% block scriptBlock %}
+        {% endblock %}
     </body>
 </html>
