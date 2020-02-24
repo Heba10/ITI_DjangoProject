@@ -6,22 +6,31 @@
  <table class="table table-hover">
   <thead>
     <tr>
+        <th scope="col">id</th>
       <th scope="col">username</th>
       <th scope="col">e-mail</th>
-      <th scope="col">full name</th>
-      <th scope="col">date</th>
+      <th scope="col">first name</th>
+      <th scope="col">last name</th>
+        <th scope="col">admin</th>
+
     </tr>
   </thead>
 
   <tbody>
-   {%for post in post%}
-    <tr>
-      <td>{{post.title}}</td>
-      <td>{{post.author}</td>
-      <td>{{post.cat_name}}</td>
-      <td>{{post.date}}</td>
-        <td>Edit</td>
-        <td>Delete</td>
+   {%for users in users%}
+   {% if users.is_superuser %}
+    <tr class="table-danger">
+        {%else%}
+        <tr>
+       {%endif%}
+      <td>{{users.id}}</td>
+      <td>{{users.get_username }}</td>
+      <td>{{users.email}}</td>
+      <td>{{users.first_name}}</td>
+        <td>{{users.last_name}}</td>
+        <td>{{users.is_superuser}}</td>
+      <td>Edit</td>
+      <td>Delete</td>
     </tr>
   {%endfor%}
   </tbody>
