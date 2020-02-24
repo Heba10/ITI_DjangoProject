@@ -1,12 +1,15 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from Posts.models import Post,Category,Reply,Comments
 
 # Create your views here.
 
 def users(request):
+    users = User.objects.all()
+    u = User.get_username
     mainContentVar = "Users"
-    context = {'mainContentVar': mainContentVar}
+    context = {'u':u,'users':users,'mainContentVar': mainContentVar}
     return render(request,'admin/content/usersTable.html',context)
 
 def categories(request):
@@ -34,7 +37,4 @@ def words(request):
     mainContentVar = "Forbidden Words"
     context = {'mainContentVar': mainContentVar}
     return render(request,'admin/content/wordsForbidden.html',context)
-
-
-
 

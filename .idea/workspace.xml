@@ -2,19 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/categories.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainContent.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainSideBar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/postsList.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/usersTable.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/wordsForbidden.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ourBlog/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/admin.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ourBlog/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/models.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/adminlte.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ourBlog/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainSideBar.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/mainSideBar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ourBlog/templates/admin/content/usersTable.html" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/templates/admin/content/usersTable.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ourBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -112,10 +104,10 @@
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
     <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582508885457" />
-    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582322754713">
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582558978262">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582322754713" />
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582558978262" />
     <state x="264" y="153" width="915" height="800" key="DiffContextDialog" timestamp="1582322629382">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
