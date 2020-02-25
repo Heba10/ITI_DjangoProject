@@ -11,35 +11,57 @@
                 <div class="post-content-body">
                     <div class="row mb-5 mt-3">
                         <div class="col-md-12 mb-4">
+                            {% if post.thumbnail.url != "/media/default.png" %}
                             <img src="{{post.thumbnail.url}}" alt="Image placeholder" class="img-fluid rounded">
+                            {% endif %}
                         </div>
                     </div>
-                    <p>{{post.abstractBody}}</p>
+                    <p>{{post.body}}</p>
                 </div>
 
 
                 <div class="pt-5">
-                    <p>Categories:  <a href="#">Food</a>, <a href="#">Travel</a>  Tags: <a href="#">#manila</a>, <a href="#">#asia</a></p>
+                    <p>Category:  <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a>
+                      Tags: 
+                        {% for tag in post.tag_name.all %}
+                        <a href="">{{tag.tag_name}}</a>, 
+                        {% endfor %}
+                    </p>
                 </div>
 
+                <div style="border: 2px solid #cecbcb;">
+                {%if request.user.is_authenticated%}
                 <div class="container">
                     <div class="row text-center smaller bg-light">
-                        <div class="col-1">
-                            <a href="#ttt" role="button">Like</a>
+                      {% if request.user.is_authenticated %}
+                        <div class="col-4" style="color: #2f89fc;" id="imgState">
+                            <u id="like">like</u>
                         </div>
-                        <div class="col-2">
-                            <a href="#ttt" role="button">Dislike</a>
-                        </div>
+                        {% endif %}
+
                         <div class="col-1">
                             <a href="#comment" role="button">
                                 Comment
                             </a>
                         </div>
                     </div>
+                    <div class="row text-center smaller bg-light">
+                        <div class="col-2 ml-1 mr-1" id="likeNum">
+                            
+                        </div>
+                        <div class="col-2 ml-1" id="dislikeNum">
+                            
+                        </div>
+                    </div>
                 </div>
+                
+              {% endif%}
+              </div>
                 <div class="pt-5">
+                   
                     <h3 class="mb-5">6 Comments</h3>
                     <ul class="comment-list">
+
                         {% for d in data %}
                         <li class="comment">
                             <div class="vcard">
@@ -49,8 +71,24 @@
                                 <h3>{{d.comm.user_name}}</h3>
                                 <div class="meta">January 9, 2018 at 2:21pm</div>
                                 <p>{{d.comm.content}}</p>
-                                <p><a href="#" class="reply rounded">Reply</a></p>
+                                
+                                <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
+                                <p><a data-toggle="collapse" href="#ddd" role="button">reply</a></p>
                             </div>
+                            <div class="collapse" id="ddd">
+                               <form action="/posts/{{d.comm.id}}/addreply" method="post" class="p-5 bg-light">
+                                {%csrf_token%}
+                                    <div class="form-group">
+                                        <label for="message">Reply</label>
+                                        <input type="textarea" name="message" cols="30" rows="4" class="form-control" required>
+                                       <!--  <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea> -->
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="submit" value="ADD" class="btn btn-primary">
+                                    </div>
+                                </form>
+                            </div>
+                            
                             {% if d.rep %}
                             <ul class="children">
                                 <li class="comment">
@@ -69,21 +107,32 @@
                         {% endfor%}
                     </ul>
                     <!-- END comment-list -->
-
+                    {%if request.user.is_authenticated%}
                     <div class="comment-form-wrap pt-5" id="comment">
                         <h3 class="mb-5">Leave a comment</h3>
-                        <form action="#" class="p-5 bg-light">
-
+                        <form action="/posts/{{post.id}}/addcomment" method="post" class="p-5 bg-light">
+                            {%csrf_token%}
                             <div class="form-group">
                                 <label for="message">Comment</label>
-                                <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea>
+                                <input type="textarea" name="message" cols="30" rows="4" class="form-control" required>
+                               <!--  <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea> -->
                             </div>
                             <div class="form-group">
-                                <input type="submit" value="Post Comment" class="btn btn-primary">
+                                <input type="submit" value="ADD" class="btn btn-primary">
                             </div>
 
                         </form>
                     </div>
+                    {% else %}
+                    <h5 class="meta" style="color: rgb(255,0,0);" > unfortunately you can't make a comment subscribe now 
+                    with us to know everything new  <a href="/register">Register</a></h5>
+                 
+                       
+                
+
+
+                    {% endif%}
+
                 </div>
 
             </div>
@@ -94,4 +143,100 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block scriptBlock %}
+<script>
+    let like = document.querySelector("#like");
+    let imgState = document.querySelector("#imgState");
+    let imgAdd = document.createElement("img");
+    let likeNum = document.querySelector("#likeNum");
+    let dislikeNum = document.querySelector("#dislikeNum");
+    likeState = like.textContent;
+
+    getFirstValue(likeState,1);
+
+    like.addEventListener('click', (ev)=>{
+        console.log('addEventListener')
+        if(like.textContent=='like')
+        {
+            // AffectLike();
+            getFirstValue('like',0);
+        }
+        else if(like.textContent=='dislike')
+        {
+            // AffectDislike();
+            getFirstValue('dislike',0);
+        } 
+    });
+
+    // function chooseReact()
+    // {
+    //     console.log("done");
+    //     let pick = document.createElement('p');
+    //     let like = document.createElement('span');
+    //     let dislike = document.createElement('span');
+    //     pick.appendChild(like);
+    //     pick.appendChild(dislike);
+    //     like.appendChild(pick);
+    //     pick.style.zIndex="1";
+    // }
+    
+    function AffectLike()
+    {
+        imgAdd.src="{% static 'publicStatic/images/dislike2.png' %}";
+        imgAdd.width="20";
+        imgAdd.hieght="20";
+        imgState.insertBefore(imgAdd, imgState.firstChild);
+    }
+    function AffectDislike()
+    {
+        imgAdd.src="{% static 'publicStatic/images/like.png' %}";
+        imgAdd.width="20";
+        imgAdd.hieght="20";
+        imgState.insertBefore(imgAdd, imgState.firstChild);
+    }
+
+    function getFirstValue(reactStatex, refreshx)
+    {
+        postId='{{post.id}}';
+        userId='{{request.user}}';
+        const Http = new XMLHttpRequest();
+        const url=`/posts/like?postId=${postId}&reactStatex=${reactStatex}&refreshx=${refreshx}`;
+        // const url=`/posts/like/${postId}/${userId}/${reactStatex}/${refreshx}`;
+        Http.open("GET", url);
+        Http.send();
+
+        Http.onreadystatechange = (e) => {
+          // console.log(Http.response)
+            if (Http.readyState==4 && Http.status==200)
+            {
+                let likeStatex = Http.response
+                likeStateJASON = JSON.parse(likeStatex)
+
+                console.log(JSON.parse(likeStatex));
+                if(likeStateJASON.reactType=='like')
+                {
+                    console.log(likeStatex);
+                    like.textContent='dislike';
+                    AffectLike();
+                }
+                else if(likeStateJASON.reactType=='dislike')
+                {
+                    console.log(likeStatex);
+                    like.textContent='like';
+                    AffectDislike();
+                }
+                likeNum.textContent=likeStateJASON.likeReact+" like"
+                dislikeNum.textContent=likeStateJASON.dislikeReact+" dislike"
+                Http.abort();
+            }
+        }
+    }
+
+    // like.addEventListener('mouseover', (ev)=>{
+    //     console.log("over")
+    // });
+</script>
+
 {% endblock %}
