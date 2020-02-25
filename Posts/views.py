@@ -193,3 +193,10 @@ def editPost(request,postid):
 		return HttpResponseRedirect('/posts/')
 
 
+def deletePost(request,postid):
+	post = Post.objects.get(id=postid)
+	if(request.user==post.author):		
+		post.delete()
+	return HttpResponseRedirect('/posts/')
+
+
