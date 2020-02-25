@@ -178,13 +178,18 @@ def addNewPost(request):
 
 def editPost(request,postid):
 	post = Post.objects.get(id=postid)
-	if request.method=="POST":
-		form=postForm(request.POST,instance=post)
-		if form.is_valid():
-			form.save()
-			return HttpResponseRedirect('/posts/')
+	if(request.user==post.author):
+		if request.method=="POST":
+			form=postForm(request.POST,instance=post)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect('/posts/')
+		else:
+			form=postForm(instance=post)
+			cats = Category.objects.all()
+			context={'newPost':form, 'cats':cats}
+			return render(request,'posts/newPost.html',context)
 	else:
-		form=postForm(instance=post)
-		cats = Category.objects.all()
-		context={'newPost':form, 'cats':cats}
-		return render(request,'posts/newPost.html',context)
+		return HttpResponseRedirect('/posts/')
+
+
