@@ -2,13 +2,13 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<div class="site-section ml-4 mr-4 text-dark">
+<div class="site-section mx-5 text-dark">
     <div class="card-columns">
         {%if posts %}
             {% for post in posts %}
             <div class="card">
                 {% if post.thumbnail.url != "/media/default.png" %}
-                <img class="card-img-top" src="{{post.thumbnail.url}}" alt="Card image cap">
+                <img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap">
                 {% endif %}
                 <div class="card-body">
                     <div class="post-meta align-items-center text-left clearfix">

@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import Post , Category ,Comments,Reply, Reaction, Subscribes,BadWord, Tags
 import json
 import re
+from .forms import postForm
 
 def homePage(request):
 	posts = Post.objects.all().order_by('date')
@@ -154,3 +155,22 @@ def listTags(request,tagid):
 	cats = Category.objects.all()
 	context={'posts':posts,'cats':cats}
 	return render(request,'posts/index.html', context)
+
+def addNewPost(request):
+	new_post=None
+	if request.method == 'POST':
+		newPost = postForm(data=request.POST)
+		if newPost.is_valid():
+			new_post = newPost.save(commit=False)
+			new_post.author = request.user
+			new_post.save()
+			# cats = Category.objects.all()
+			# context={'posts':posts,'cats':cats}
+			# return render(request,'posts/index.html', context)
+
+			return HttpResponseRedirect('/posts/')
+	else:
+		newPost = postForm()
+	cats = Category.objects.all()
+	context = {'newPost':newPost, 'cats':cats}
+	return render(request,'posts/newPost.html', context)
