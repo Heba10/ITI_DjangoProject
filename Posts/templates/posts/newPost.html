@@ -1,0 +1,25 @@
+{% extends "./base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="my-5">
+<div class="container my-5">
+	<div class="row m-auto my-5 text-center d-flex justify-content-center">
+		<h2>Add New Post</h2>
+	</div>
+	<div class="row m-auto my-5 text-center d-flex justify-content-center text-dark">
+		<form method="post">
+			{% csrf_token %}
+				Title
+		        <p>{{ newPost.title|add_class:'form-control' }}</p>
+		        Content
+		        <p>{{ newPost.body|add_class:'form-control'|attr:"rows:7" }}</p>
+		        Tags
+		        <p>{{ newPost.tag_name|add_class:'form-control text-center w-25 m-auto' }}</p>
+		        Category
+		        <p>{{ newPost.cat_name|attr:"foo:default_foo" }}</p>
+		    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+		</form>
+	</div>
+</div>
+</div>	
+{% endblock %}

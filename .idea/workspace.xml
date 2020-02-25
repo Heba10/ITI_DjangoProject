@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="" />
+    <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Posts/migrations/0002_remove_post_slug.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Posts/templates/posts/newPost.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/Explore.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/templates/posts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/templates/posts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/templates/posts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/templates/posts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/templates/posts/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/templates/posts/single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/cebupacific-booking.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/dislike.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/hero_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_v_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_v_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_5.jpg" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

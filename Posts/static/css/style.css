@@ -7,9 +7,10 @@
 	padding: 10px;
 }
 
-.title{
-
+.btnSubmit{
+	display: block;
 }
+
 
 .content{
 	background-color: grey;

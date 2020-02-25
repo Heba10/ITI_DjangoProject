@@ -1,5 +1,6 @@
 {% extends "./base.html" %}
 {% load static %}
+{% load humanize %}
 {% block content %}
 <section class="site-section py-lg">
     <div class="container">
@@ -24,7 +25,7 @@
                     <p>Category:  <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a>
                       Tags: 
                         {% for tag in post.tag_name.all %}
-                        <a href="">{{tag.tag_name}}</a>, 
+                        <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
                         {% endfor %}
                     </p>
                 </div>
@@ -59,7 +60,7 @@
               </div>
                 <div class="pt-5">
                    
-                    <h3 class="mb-5">6 Comments</h3>
+                    <h3 class="mb-5 text-secondary">{{data|length}} Comment</h3>
                     <ul class="comment-list">
 
                         {% for d in data %}
@@ -69,38 +70,44 @@
                             </div>
                             <div class="comment-body">
                                 <h3>{{d.comm.user_name}}</h3>
-                                <div class="meta">January 9, 2018 at 2:21pm</div>
-                                <p>{{d.comm.content}}</p>
+                                <div class="meta text-secondary ">{{d.comm.date|naturaltime}}</div>
+                                <p class="text-dark">{{d.comm.content}}</p>
                                 
                                 <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
-                                <p><a data-toggle="collapse" href="#ddd" role="button">reply</a></p>
+                                {%if request.user.is_authenticated%}
+                                <p><a data-toggle="collapse" href="#ddd{{forloop.counter}}" role="button">reply</a></p>
                             </div>
-                            <div class="collapse" id="ddd">
+                            <div class="collapse" id="ddd{{forloop.counter}}">
                                <form action="/posts/{{d.comm.id}}/addreply" method="post" class="p-5 bg-light">
                                 {%csrf_token%}
+                                
                                     <div class="form-group">
                                         <label for="message">Reply</label>
                                         <input type="textarea" name="message" cols="30" rows="4" class="form-control" required>
                                        <!--  <textarea name="" id="message" cols="30" rows="4" class="form-control"></textarea> -->
                                     </div>
+
                                     <div class="form-group">
                                         <input type="submit" value="ADD" class="btn btn-primary">
                                     </div>
                                 </form>
                             </div>
+                            {% endif %}
                             
                             {% if d.rep %}
                             <ul class="children">
+                                {%for r in d.rep%}
                                 <li class="comment">
                                     <div class="vcard">
                                         <img src="{% static 'publicStatic/images/avatar.jpg' %}" alt="Image placeholder">
                                     </div>
                                     <div class="comment-body">
-                                        <h3>{{d.rep.user_name}}</h3>
-                                        <div class="meta">January 9, 2018 at 2:21pm</div>
-                                        <p>{{d.rep.content}}</p>
+                                        <h3>{{r.user_name}}</h3>
+                                        <div class="meta">{{r.date|naturaltime}}</div>
+                                        <p class="text-dark">{{r.content}}</p>
                                     </div>
                                 </li>
+                                {%endfor%}
                             </ul>
                             {% endif %}
                         </li>
@@ -123,14 +130,6 @@
 
                         </form>
                     </div>
-                    {% else %}
-                    <h5 class="meta" style="color: rgb(255,0,0);" > unfortunately you can't make a comment subscribe now 
-                    with us to know everything new  <a href="/register">Register</a></h5>
-                 
-                       
-                
-
-
                     {% endif%}
 
                 </div>
