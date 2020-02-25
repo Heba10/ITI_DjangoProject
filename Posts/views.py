@@ -19,10 +19,14 @@ def displayPost(request,postid):#osama will rewrite this function to be simple
 	comments = Comments.objects.filter(post_name_id=postid)
 	cats = Category.objects.all()
 	data = []
+
 	for comment in comments :
 		try:
-			reply = Reply.objects.get(comment_name_id=comment.id)
-			dic = {'comm':comment , 'rep':reply}
+			rels=[]
+			reply = Reply.objects.filter(comment_name_id=comment.id)
+			for r in reply :
+				rels.append(r)
+			dic = {'comm':comment , 'rep':rels[:]}
 		except Exception as e:
 			dic={'comm':comment }
 		finally:
@@ -115,6 +119,7 @@ def addReply(request,comid):
 
 
 def getSearchData(request):
+	# if request.method =="GET":
 	requiredSearch = request.GET['requiredSearch']
 	# cat = Category.objects.get(name=requiredSearch)
 	# post = Post.objects.filter(cat_name=cat)
@@ -123,7 +128,29 @@ def getSearchData(request):
 	# if(requiredSearch=="none"):
 	# 	return HttpResponseRedirect('/posts/')
 	# else:
-	cat = Category.objects.get(name=requiredSearch)
-	post = Post.objects.filter(cat_name=cat).order_by('date')
-	context={'posts':post}
+	cats = Category.objects.all()
+	tagPtrn=r"^#[\S]+$"
+	titlePtrn=r"^[\S][\S ]+$"
+	if(re.match(tagPtrn, requiredSearch)):
+		try:
+			tag=Tags.objects.get(tag_name=requiredSearch)
+			posts=Post.objects.filter(tag_name=tag)
+			context={'posts':posts,'cats':cats}
+		except Exception as e:
+			context={'cats':cats}
+	elif(re.match(titlePtrn, requiredSearch)):
+		posts=Post.objects.filter(title__contains=requiredSearch)
+		context={'posts':posts,'cats':cats}
+	else:
+		context={'cats':cats}
+
+	return render(request,'posts/index.html', context)
+	# return HttpResponseRedirect('/posts/')
+
+
+def listTags(request,tagid):
+	tag=Tags.objects.get(id=tagid)
+	posts=Post.objects.filter(tag_name=tag)
+	cats = Category.objects.all()
+	context={'posts':posts,'cats':cats}
 	return render(request,'posts/index.html', context)

@@ -33,13 +33,18 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [
     'Posts',
     'ourBlog',
+    'users.apps.UsersConfig',
+    'crispy_forms',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
     'django.contrib.humanize',
+
+
 ]
 
 MIDDLEWARE = [
@@ -129,3 +134,9 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL ='/posts'  
+#navigate to the home instanse of profile location
+
