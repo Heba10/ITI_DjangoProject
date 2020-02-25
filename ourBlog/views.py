@@ -82,3 +82,5 @@ def delUser(request,username):
     except User.DoesNotExist:
         return HttpResponseRedirect("/ourBlog/users")
 
+def createUser():
+    pass
