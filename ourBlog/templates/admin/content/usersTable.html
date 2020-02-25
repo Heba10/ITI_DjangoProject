@@ -1,0 +1,50 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+{% load i18n static %}
+{% block mainContent %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">username</th>
+        <th scope="col">e-mail</th>
+        <th scope="col">first name</th>
+        <th scope="col">last name</th>
+        <th scope="col">admin</th>
+        <th scope="col">Actions</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {%for users in users%}
+    {% if users.is_superuser %}
+    <tr class="table-danger">
+        {%else%}
+    <tr>
+        {%endif%}
+        <td>{{users.id}}</td>
+        <td>{{users.get_username }}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.first_name}}</td>
+        <td>{{users.last_name}}</td>
+        <td>{{users.is_superuser}}</td>
+        {% if users.is_superuser %}
+        <td>
+            <a href="revoke/{{users.get_username}}" class="btn btn-info">Make User</a>
+        </td>
+        {%else%}
+        <td>
+            <a href="grant/{{users.get_username}}" class="btn btn-info">Make Admin</a>
+            <a href="delete/{{users.get_username}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+            <a href="block/{{users.get_username}}" class="btn btn-danger"><i class="fa fa-ban"></i></a>
+        </td>
+        {%endif%}
+
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}
+

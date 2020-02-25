@@ -63,7 +63,7 @@ ROOT_URLCONF = 'blog.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -141,3 +141,19 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL ='/posts'  
 #navigate to the home instanse of profile location
 
+# <<<<<<< HEAD
+# =======
+# #STATIC_URL = os.path.join(BASE_DIR,'ourBlog/static/')
+
+# # STATIC_URL = '/ourBlog/static/'
+# # STATICFILES_DIRS=(os.path.join(BASE_DIR,"/ourBlog/static"),)
+# TEMPLATE_DIRS = (
+#     os.path.join(BASE_DIR, 'templates'),
+# )
+# STATICFILES_DIRS = (
+#      os.path.join(BASE_DIR, 'static'),
+# )
+# STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+
+# STATIC_URL = '/static/'
+# >>>>>>> c5ffc8cc208188ad4ef43b2082dd382ed88c4c94

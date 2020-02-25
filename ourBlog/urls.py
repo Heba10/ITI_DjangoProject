@@ -17,5 +17,13 @@ from django.urls import path
 from ourBlog import views
 
 urlpatterns = [
-
+    path('users/', views.users),
+    path('categories/', views.categories),
+    path('posts/', views.posts),
+    path('words/', views.words),
+    path('delPost/<post_id>', views.deletePost),
+    path('users/revoke/<username>', views.revokeUser),
+    path('users/grant/<username>', views.grantUser),
+    path('users/block/<username>', views.blockUser),
+    path('users/delete/<username>', views.delUser),
 ]
