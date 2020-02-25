@@ -16,7 +16,7 @@ urlpatterns = [
     path('listtag/<tagid>',views.listTags),
     url('newPost',views.addNewPost),
     path('editpost/<postid>',views.editPost),
-
+    path('deletepost/<postid>',views.deletePost),
 	# url(r'^(?P<slug>[\w-]+)/$', views.displayPost, name="postDetails"),
 	# url(r'^listcat/{id}$', views.listCat),
 	# url(r'^like/(?P<postId>[\w]+)/(?P<userId>[\w]+)/(?P<reactState>[\w]+)/(?P<refresh>[\w]+)$', views.getData),
