@@ -69,9 +69,9 @@
                                 <p>{{d.comm.content}}</p>
                                 
                                 <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
-                                <p><a data-toggle="collapse" href="#ddd" role="button">reply</a></p>
+                                <p><a data-toggle="collapse" href="#ddd{{forloop.counter}}" role="button">reply</a></p>
                             </div>
-                            <div class="collapse" id="ddd">
+                            <div class="collapse" id="ddd{{forloop.counter}}">
                                <form action="/posts/{{d.comm.id}}/addreply" method="post" class="p-5 bg-light">
                                 {%csrf_token%}
                                     <div class="form-group">
