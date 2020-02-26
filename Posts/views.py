@@ -168,13 +168,13 @@ def addNewPost(request):
 	else:
 		newPost = postForm()
 	cats = Category.objects.all()
-	context = {'newPost':newPost, 'cats':cats}
+	context = {'newPost':newPost, 'cats':cats,'status':"new"}
 	return render(request,'posts/newPost.html', context)
 
 
 def editPost(request,postid):
 	post = Post.objects.get(id=postid)
-	if(request.user==post.author):
+	if(request.user==post.author or request.user.is_staff):
 		if request.method=="POST":
 			form=postForm(request.POST,instance=post)
 			if form.is_valid():
@@ -183,7 +183,7 @@ def editPost(request,postid):
 		else:
 			form=postForm(instance=post)
 			cats = Category.objects.all()
-			context={'newPost':form, 'cats':cats}
+			context={'newPost':form, 'cats':cats,'status':"edit"}
 			return render(request,'posts/newPost.html',context)
 	else:
 		return HttpResponseRedirect('/posts/')
@@ -191,7 +191,7 @@ def editPost(request,postid):
 
 def deletePost(request,postid):
 	post = Post.objects.get(id=postid)
-	if(request.user==post.author):		
+	if(request.user==post.author or request.user.is_staff):		
 		post.delete()
 	return HttpResponseRedirect('/posts/')
 
@@ -201,5 +201,6 @@ def listuser(request,userid):
 	cats = Category.objects.all()
 	context={'posts':posts,'cats':cats}
 	return render(request,'posts/index.html', context)
+
 
 
