@@ -1,0 +1,40 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+ {% load i18n static %}
+{% block mainContent %}
+ <table class="table table-hover">
+  <thead>
+    <tr>
+        <th scope="col">id</th>
+      <th scope="col">username</th>
+      <th scope="col">e-mail</th>
+      <th scope="col">first name</th>
+      <th scope="col">last name</th>
+        <th scope="col">admin</th>
+
+    </tr>
+  </thead>
+
+  <tbody>
+   {%for users in users%}
+   {% if users.is_superuser %}
+    <tr class="table-danger">
+        {%else%}
+        <tr>
+       {%endif%}
+      <td>{{users.id}}</td>
+      <td>{{users.get_username }}</td>
+      <td>{{users.email}}</td>
+      <td>{{users.first_name}}</td>
+        <td>{{users.last_name}}</td>
+        <td>{{users.is_superuser}}</td>
+      <td>Edit</td>
+      <td>Delete</td>
+    </tr>
+  {%endfor%}
+  </tbody>
+</table>
+
+{% endblock %}
+

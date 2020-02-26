@@ -10,8 +10,38 @@
     <!-- Bootstrap CSS -->
    <!--  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap.min.css'%}" />
+
+    <link rel="stylesheet" type="text/css" href="{% static 'main.css' %}">
+
+    {% if title %}
+        <title>ITI Blog - {{ title }}</title>
+    {% else %}
+        <title>ITI Blog</title>
+    {% endif %}
 </head>
 <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+        <!--   <a class="navbar-brand mr-4" href="">ITI Blog</a>  --> <!-- url 'blog-home'  -->
+        <img src="{% static 'publicStatic/images/1.png' %}" height="60">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+             <!--  <a class="nav-item nav-link" href="">Home</a>  --> <!-- url 'blog-home'  -->
+           <!--    <a class="nav-item nav-link" href="">About</a>  --> <!--  url 'blog-about' -->
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+              <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+              <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
     <main role="main" class="container">
       <div class="row">
         <div class="col-md-8">
@@ -24,10 +54,29 @@
           {% endif %}
           {% block content %}{% endblock %}
         </div>
-
+        <div class="col-md-4">
+          <div class="content-section">
+            <h3 style="color: rgb(91, 13, 13) ;font-size: 2.6em;line-height: 46px;">About <strong>ITI</strong></h3>
+            
+            <p class='text-muted'> Information Technology Institute is a pioneering national institute with a regional influence and international linkage. Since it was established in 1993, ITI has been devoted to provide a large pool of promising youth with world-class human capacity building programs and empirical learning approach to profoundly scale up the impact of the aspiring Egyptian youth in the ICT workplace. While moving to a future where everyone is acquainted with technology and is capable to contribute in shaping the future of the ICT industry, the ITI provides Egyptians from 12 year olds till 60 year olds with the needed support. It offers Egyptians free scholarships and training in the different areas of the market
+            </p>
+              <ul class="list-group">
+                
+                <li class="list-group-item list-group-item-light">9-month Professional Training Program</li>
+                <li class="list-group-item list-group-item-light">Intensive Training </li>
+                <li class="list-group-item list-group-item-light">Career Development Programs</li>
+                <li class="list-group-item list-group-item-light">Open Online Courses Academy</li>
+              </ul>
+            </p>
+          </div>
+        </div>
       </div>
     </main>
 
-  
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-</html>
+</html> 

@@ -1,5 +1,6 @@
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
+{% load static %}
 {% block content %}
     <div class="content-section">
         <form method="POST">
@@ -16,6 +17,8 @@
             <small class="text-muted">
                 Already Have An Account? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
             </small>
+        <!-- <div class="site-cover site-cover-sm same-height overlay single-page" >
+        <img src="{% static 'publicStatic/images/ITIlogo.png' %}"> -->
         </div>
     </div>
 {% endblock content %}

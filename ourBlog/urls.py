@@ -17,5 +17,9 @@ from django.urls import path
 from ourBlog import views
 
 urlpatterns = [
-
+    path('users/',views.users),
+    path('categories/',views.categories),
+    path('posts/',views.posts),
+    path('words/',views.words),
+    path('delPost/<post_id>',views.deletePost)
 ]
