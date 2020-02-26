@@ -114,6 +114,13 @@ def addReply(request,comid):
 		mptrn= r"^[\S][\S ]+$"
 		result = re.match(mptrn, con)
 		if(result):
+			words =BadWord.objects.all()
+			for word in words:
+				rep=""
+				size=len(word.word)
+				for i in range(size):
+					rep+="*"
+				con = con.replace(word.word,rep)
 			rep=Reply(user_name=uname,comment_name=comment,content=con)
 			rep.save();
 		return HttpResponseRedirect('/posts/'+str(comment.post_name_id))
@@ -198,5 +205,9 @@ def deletePost(request,postid):
 	if(request.user==post.author):		
 		post.delete()
 	return HttpResponseRedirect('/posts/')
+
+
+# def listuser(request,user):
+# 	post.
 
 
