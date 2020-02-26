@@ -6,7 +6,7 @@ from . import views
 urlpatterns = [
 	url(r'^$', views.homePage),
 	url(r'^about$', views.about),
-	url(r'^(?P<postid>[\w])/$', views.displayPost),
+	url(r'^(?P<postid>[\w]+)/$', views.displayPost),
 	path('listcat/<catid>', views.listCat),#i will try to fix it with url #osama
     url(r'^like$', views.getLikeData),
     url(r'^subscribe$', views.getSubscribeData),

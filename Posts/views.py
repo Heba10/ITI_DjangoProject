@@ -158,10 +158,11 @@ def listTags(request,tagid):
 def addNewPost(request):
 	new_post=None
 	if request.method == 'POST':
-		newPost = postForm(data=request.POST)
+		newPost = postForm(request.POST, request.FILES, Post)
 		if newPost.is_valid():
 			new_post = newPost.save(commit=False)
 			new_post.author = request.user
+			new_post.thumbnail = request.FILES.get('thumbnail')
 			new_post.save()
 			return HttpResponseRedirect('/posts/')
 	else:
