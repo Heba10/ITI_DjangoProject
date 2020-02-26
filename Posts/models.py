@@ -51,7 +51,7 @@ class Subscribes(models.Model):
 
 class Comments(models.Model):
 	post_name = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
-	user_name = models.CharField(max_length=25)
+	user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	content = models.CharField(max_length=200)
 	date=models.DateTimeField(auto_now_add=True)
 
@@ -59,7 +59,7 @@ class Comments(models.Model):
 		return '%s %s' % (self.user_name, self.post_name)
 
 class Reply(models.Model):
-	user_name = models.CharField(max_length=25)
+	user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	comment_name = models.ForeignKey(Comments,on_delete=models.CASCADE)
 	content = models.CharField(max_length=200)
 	date=models.DateTimeField(auto_now_add=True)

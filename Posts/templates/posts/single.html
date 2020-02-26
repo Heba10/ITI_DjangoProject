@@ -77,6 +77,9 @@
                             <div class="comment-body">
                                 <h3>{{d.comm.user_name}}</h3>
                                 <div class="meta text-secondary ">{{d.comm.date|naturaltime}}</div>
+                                {%if request.user == d.comm.user_name or request.user.is_staff %}
+                                    <h3><a href="/posts/{{d.comm.id}}/deletecomment"> delete </a></h3>
+                                {%endif%}  
                                 <p class="text-dark">{{d.comm.content}}</p>
                                 
                                 <!-- <p><a href="#" class="reply rounded">Reply</a></p> -->
@@ -109,7 +112,11 @@
                                     </div>
                                     <div class="comment-body">
                                         <h3>{{r.user_name}}</h3>
+
                                         <div class="meta">{{r.date|naturaltime}}</div>
+                                        {%if request.user == d.comm.user_name or request.user.is_staff %}
+                                            <h3><a href="/posts/{{r.id}}/deletereply"> delete </a></h3>
+                                        {%endif%} 
                                         <p class="text-dark">{{r.content}}</p>
                                     </div>
                                 </li>

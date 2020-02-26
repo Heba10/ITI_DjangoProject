@@ -202,5 +202,17 @@ def listuser(request,userid):
 	context={'posts':posts,'cats':cats}
 	return render(request,'posts/index.html', context)
 
+def deletecomment(request,comid):
+	comment = Comments.objects.get(id=comid)
+	postid=comment.post_name_id
+	if(request.user==comment.user_name or request.user.is_staff):
+		comment.delete()
+	return HttpResponseRedirect('/posts/'+str(postid))
 
 
+def deletereply(request,repid):
+	reply =Reply.objects.get(id=repid)
+	comment=Comments.objects.get(id=reply.comment_name_id)
+	if(request.user==reply.user_name or request.user.is_staff):
+		reply.delete()
+	return HttpResponseRedirect('/posts/'+str(comment.post_name_id))

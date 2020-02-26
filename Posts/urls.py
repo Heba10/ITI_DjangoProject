@@ -18,6 +18,8 @@ urlpatterns = [
     path('editpost/<postid>',views.editPost),
     path('deletepost/<postid>',views.deletePost),
     path('showuser/<userid>',views.listuser),
+    path('<comid>/deletecomment',views.deletecomment),
+    path('<repid>/deletereply',views.deletereply),
 	# url(r'^(?P<slug>[\w-]+)/$', views.displayPost, name="postDetails"),
 	# url(r'^listcat/{id}$', views.listCat),
 	# url(r'^like/(?P<postId>[\w]+)/(?P<userId>[\w]+)/(?P<reactState>[\w]+)/(?P<refresh>[\w]+)$', views.getData),
