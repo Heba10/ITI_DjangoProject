@@ -58,6 +58,15 @@
                                         <li class="nav-item active">
                                             <a class="nav-link" href="/posts/">Home <span class="sr-only">(current)</span></a>
                                         </li>
+                                        {%if request.user.is_superuser%}
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="/admin">manage blog <span class="sr-only">(current)</span></a>
+                                            </li>
+                                        {% elif request.user.is_authenticated %}
+                                            <li class="nav-item active">
+                                                <a class="nav-link" href="/posts/newPost">add post <span class="sr-only">(current)</span></a>
+                                            </li>
+                                        {%endif%}
                                         <li class="nav-item dropdown">
                                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -181,8 +190,8 @@
                 const url=`/posts/subscribe?catNum=${catNum}&refresh=${refresh}`;
                 Http.open("GET", url);
                 Http.send();
-                console.log("hi")
-                console.log(subscribe{{cat.id}})
+                console.log("hi");
+                console.log(subscribe{{cat.id}});
                 Http.onreadystatechange = (e) => {
                   // console.log(Http.response)
                     if (Http.readyState==4 && Http.status==200)
