@@ -44,14 +44,14 @@ class Reaction(models.Model):
 
 class Subscribes(models.Model):
 	user_name =models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
-	cat_name =models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+	cat_name =models.ForeignKey(Category, on_delete=models.CASCADE)
 
 	def __str__(self):
 		return '%s %s' % (self.user_name, self.cat_name)
 
 class Comments(models.Model):
 	post_name = models.ForeignKey(Post, on_delete=models.CASCADE)
-	user_name = models.CharField(max_length=25)
+	user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	content = models.CharField(max_length=200)
 	date=models.DateTimeField(auto_now_add=True)
 
@@ -59,7 +59,7 @@ class Comments(models.Model):
 		return '%s %s' % (self.user_name, self.post_name)
 
 class Reply(models.Model):
-	user_name = models.CharField(max_length=25)
+	user_name = models.ForeignKey(User, on_delete=models.CASCADE, default=None)
 	comment_name = models.ForeignKey(Comments,on_delete=models.CASCADE)
 	content = models.CharField(max_length=200)
 	date=models.DateTimeField(auto_now_add=True)

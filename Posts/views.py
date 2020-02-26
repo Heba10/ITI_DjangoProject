@@ -114,31 +114,38 @@ def addReply(request,comid):
 		mptrn= r"^[\S][\S ]+$"
 		result = re.match(mptrn, con)
 		if(result):
+			words =BadWord.objects.all()
+			for word in words:
+				rep=""
+				size=len(word.word)
+				for i in range(size):
+					rep+="*"
+				con = con.replace(word.word,rep)
 			rep=Reply(user_name=uname,comment_name=comment,content=con)
 			rep.save();
 		return HttpResponseRedirect('/posts/'+str(comment.post_name_id))
 
 
 def getSearchData(request):
-	requiredSearch = request.GET['requiredSearch']
-
-	cats = Category.objects.all()
-	tagPtrn=r"^#[\S]+$"
-	titlePtrn=r"^[\S][\S ]+$"
-	if(re.match(tagPtrn, requiredSearch)):
-		try:
-			tag=Tags.objects.get(tag_name=requiredSearch)
-			posts=Post.objects.filter(tag_name=tag)
+	if request.method =="GET":
+		requiredSearch = request.GET['requiredSearch']
+		cats = Category.objects.all()
+		tagPtrn=r"^#[\S]+$"
+		titlePtrn=r"^[\S][\S ]+$"
+		if(re.match(tagPtrn, requiredSearch)):
+			try:
+				tag=Tags.objects.get(tag_name=requiredSearch)
+				posts=Post.objects.filter(tag_name=tag)
+				context={'posts':posts,'cats':cats}
+			except Exception as e:
+				context={'cats':cats}
+		elif(re.match(titlePtrn, requiredSearch)):
+			posts=Post.objects.filter(title__contains=requiredSearch)
 			context={'posts':posts,'cats':cats}
-		except Exception as e:
+		else:
 			context={'cats':cats}
-	elif(re.match(titlePtrn, requiredSearch)):
-		posts=Post.objects.filter(title__contains=requiredSearch)
-		context={'posts':posts,'cats':cats}
-	else:
-		context={'cats':cats}
-
-	return render(request,'posts/index.html', context)
+		return render(request,'posts/index.html', context)
+	return HttpResponseRedirect('/posts/')
 
 
 def listTags(request,tagid):
@@ -156,10 +163,55 @@ def addNewPost(request):
 			new_post = newPost.save(commit=False)
 			new_post.author = request.user
 			new_post.save()
-
 			return HttpResponseRedirect('/posts/')
 	else:
 		newPost = postForm()
 	cats = Category.objects.all()
-	context = {'newPost':newPost, 'cats':cats}
+	context = {'newPost':newPost, 'cats':cats,'status':"new"}
 	return render(request,'posts/newPost.html', context)
+
+
+def editPost(request,postid):
+	post = Post.objects.get(id=postid)
+	if(request.user==post.author or request.user.is_staff):
+		if request.method=="POST":
+			form=postForm(request.POST,instance=post)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect('/posts/')
+		else:
+			form=postForm(instance=post)
+			cats = Category.objects.all()
+			context={'newPost':form, 'cats':cats,'status':"edit"}
+			return render(request,'posts/newPost.html',context)
+	else:
+		return HttpResponseRedirect('/posts/')
+
+
+def deletePost(request,postid):
+	post = Post.objects.get(id=postid)
+	if(request.user==post.author or request.user.is_staff):		
+		post.delete()
+	return HttpResponseRedirect('/posts/')
+
+
+def listuser(request,userid):
+	posts = Post.objects.filter(author_id=userid)
+	cats = Category.objects.all()
+	context={'posts':posts,'cats':cats}
+	return render(request,'posts/index.html', context)
+
+def deletecomment(request,comid):
+	comment = Comments.objects.get(id=comid)
+	postid=comment.post_name_id
+	if(request.user==comment.user_name or request.user.is_staff):
+		comment.delete()
+	return HttpResponseRedirect('/posts/'+str(postid))
+
+
+def deletereply(request,repid):
+	reply =Reply.objects.get(id=repid)
+	comment=Comments.objects.get(id=reply.comment_name_id)
+	if(request.user==reply.user_name or request.user.is_staff):
+		reply.delete()
+	return HttpResponseRedirect('/posts/'+str(comment.post_name_id))
