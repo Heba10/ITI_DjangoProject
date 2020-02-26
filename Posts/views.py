@@ -127,33 +127,26 @@ def addReply(request,comid):
 
 
 def getSearchData(request):
-	# if request.method =="GET":
-	requiredSearch = request.GET['requiredSearch']
-	# cat = Category.objects.get(name=requiredSearch)
-	# post = Post.objects.filter(cat_name=cat)
-	# tag = Tags.objects.filter(tag_name=requiredSearch)
-	# return HttpResponse("heelllo")
-	# if(requiredSearch=="none"):
-	# 	return HttpResponseRedirect('/posts/')
-	# else:
-	cats = Category.objects.all()
-	tagPtrn=r"^#[\S]+$"
-	titlePtrn=r"^[\S][\S ]+$"
-	if(re.match(tagPtrn, requiredSearch)):
-		try:
-			tag=Tags.objects.get(tag_name=requiredSearch)
-			posts=Post.objects.filter(tag_name=tag)
+	if request.method =="GET":
+		requiredSearch = request.GET['requiredSearch']
+		cats = Category.objects.all()
+		tagPtrn=r"^#[\S]+$"
+		titlePtrn=r"^[\S][\S ]+$"
+		if(re.match(tagPtrn, requiredSearch)):
+			try:
+				tag=Tags.objects.get(tag_name=requiredSearch)
+				posts=Post.objects.filter(tag_name=tag)
+				context={'posts':posts,'cats':cats}
+			except Exception as e:
+				context={'cats':cats}
+		elif(re.match(titlePtrn, requiredSearch)):
+			posts=Post.objects.filter(title__contains=requiredSearch)
 			context={'posts':posts,'cats':cats}
-		except Exception as e:
+		else:
 			context={'cats':cats}
-	elif(re.match(titlePtrn, requiredSearch)):
-		posts=Post.objects.filter(title__contains=requiredSearch)
-		context={'posts':posts,'cats':cats}
-	else:
-		context={'cats':cats}
 
-	return render(request,'posts/index.html', context)
-	# return HttpResponseRedirect('/posts/')
+		return render(request,'posts/index.html', context)
+	return HttpResponseRedirect('/posts/')
 
 
 def listTags(request,tagid):
@@ -171,10 +164,6 @@ def addNewPost(request):
 			new_post = newPost.save(commit=False)
 			new_post.author = request.user
 			new_post.save()
-			# cats = Category.objects.all()
-			# context={'posts':posts,'cats':cats}
-			# return render(request,'posts/index.html', context)
-
 			return HttpResponseRedirect('/posts/')
 	else:
 		newPost = postForm()
@@ -207,7 +196,10 @@ def deletePost(request,postid):
 	return HttpResponseRedirect('/posts/')
 
 
-# def listuser(request,user):
-# 	post.
+def listuser(request,userid):
+	posts = Post.objects.filter(author_id=userid)
+	cats = Category.objects.all()
+	context={'posts':posts,'cats':cats}
+	return render(request,'posts/index.html', context)
 
 
