@@ -8,7 +8,7 @@ urlpatterns = [
 	url(r'^about$', views.about),
 	url(r'^(?P<postid>[\w])/$', views.displayPost),
 	path('listcat/<catid>', views.listCat),#i will try to fix it with url #osama
-    url(r'^like$', views.getData),
+    url(r'^like$', views.getLikeData),
     url(r'^subscribe$', views.getSubscribeData),
     path('<postid>/addcomment',views.addComment),
     path('<comid>/addreply',views.addReply),

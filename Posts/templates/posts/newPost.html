@@ -14,9 +14,11 @@
 		        Content
 		        <p>{{ newPost.body|add_class:'form-control'|attr:"rows:7" }}</p>
 		        Tags
-		        <p>{{ newPost.tag_name|add_class:'form-control text-center w-25 m-auto' }}</p>
+		        <p>{{ newPost.tag_name|add_class:'form-control' }}</p>
 		        Category
-		        <p>{{ newPost.cat_name|attr:"foo:default_foo" }}</p>
+		        <p>{{ newPost.cat_name|add_class:'form-control' }}</p>
+		        Add Image
+		        <p>{{ newPost.thumbnail|add_class:'form-control' }}</p>
 		    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
 		</form>
 	</div>

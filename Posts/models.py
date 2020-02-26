@@ -50,7 +50,7 @@ class Subscribes(models.Model):
 		return '%s %s' % (self.user_name, self.cat_name)
 
 class Comments(models.Model):
-	post_name = models.ForeignKey(Post, on_delete=models.DO_NOTHING)
+	post_name = models.ForeignKey(Post, on_delete=models.CASCADE)
 	user_name = models.CharField(max_length=25)
 	content = models.CharField(max_length=200)
 	date=models.DateTimeField(auto_now_add=True)

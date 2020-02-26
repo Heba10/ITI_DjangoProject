@@ -6,6 +6,11 @@ import re
 from .forms import postForm
 
 def homePage(request):
+	posts = Post.objects.all()
+	for post in posts:
+		dislikeReact = Reaction.objects.filter(react="dislike", post_name=post.id).count()
+		if dislikeReact==10:
+			post.delete()	#needs to be tested
 	posts = Post.objects.all().order_by('date')
 	cats = Category.objects.all()
 	context={'posts':posts,'cats':cats}
@@ -20,7 +25,6 @@ def displayPost(request,postid):#osama will rewrite this function to be simple
 	comments = Comments.objects.filter(post_name_id=postid)
 	cats = Category.objects.all()
 	data = []
-
 	for comment in comments :
 		try:
 			rels=[]
@@ -41,13 +45,13 @@ def listCat(request,catid):
 	context={'posts':posts,'cats':cats}
 	return render(request,'posts/index.html', context)
 
-
-def getData(request):
+def getLikeData(request):
 	postId = request.GET['postId']
-	userId = request.user
+	userId = request.user.id
+	print(userId)
 	reactState = request.GET['reactStatex']
 	refresh = request.GET['refreshx']
-	reaction, created = Reaction.objects.get_or_create(post_name_id=postId, user_name__username=userId)
+	reaction, created = Reaction.objects.get_or_create(post_name_id=postId, user_name_id=userId)
 	if(refresh=='0'):
 		reaction.react=reactState
 		reaction.save()
@@ -59,28 +63,24 @@ def getData(request):
 	return HttpResponse(json.dumps({'reactType':reaction.react, 'likeReact':likeReact, 'dislikeReact':dislikeReact}))
 
 def getSubscribeData(request):
-	userId = request.user
+	userId = request.user.id
 	catNum = request.GET['catNum']
 	refresh = request.GET['refresh']
-	# catState = request.GET['catState']
-
 	cat=[]
 	sub=[]
 	if refresh=='1':
 		subscribes = Subscribes
-		for x in subscribes.objects.filter(user_name=userId):
-			if x.user_name==userId:
+		for x in subscribes.objects.filter(user_name_id=userId):
+			if x.user_name.id==userId:
 				cat.append(x.cat_name.id)
 			else:
 				pass
-	# subscribes, created = Subscribes.objects.get_or_create(user_name__username=userId, cat_name_id=catNum)
 	else:
-		subscribes, created = Subscribes.objects.get_or_create(user_name__username=userId, cat_name_id=catNum)
+		subscribes, created = Subscribes.objects.get_or_create(user_name_id=userId, cat_name_id=catNum)
 		if created==True:
 			cat.append(subscribes.cat_name.id)
 		else:
 			subscribes.delete()
-
 	return HttpResponse(json.dumps({'categoryNum':cat}))
 
 
@@ -120,15 +120,8 @@ def addReply(request,comid):
 
 
 def getSearchData(request):
-	# if request.method =="GET":
 	requiredSearch = request.GET['requiredSearch']
-	# cat = Category.objects.get(name=requiredSearch)
-	# post = Post.objects.filter(cat_name=cat)
-	# tag = Tags.objects.filter(tag_name=requiredSearch)
-	# return HttpResponse("heelllo")
-	# if(requiredSearch=="none"):
-	# 	return HttpResponseRedirect('/posts/')
-	# else:
+
 	cats = Category.objects.all()
 	tagPtrn=r"^#[\S]+$"
 	titlePtrn=r"^[\S][\S ]+$"
@@ -146,7 +139,6 @@ def getSearchData(request):
 		context={'cats':cats}
 
 	return render(request,'posts/index.html', context)
-	# return HttpResponseRedirect('/posts/')
 
 
 def listTags(request,tagid):
@@ -164,9 +156,6 @@ def addNewPost(request):
 			new_post = newPost.save(commit=False)
 			new_post.author = request.user
 			new_post.save()
-			# cats = Category.objects.all()
-			# context={'posts':posts,'cats':cats}
-			# return render(request,'posts/index.html', context)
 
 			return HttpResponseRedirect('/posts/')
 	else:

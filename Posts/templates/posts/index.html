@@ -3,34 +3,41 @@
 {% load humanize %}
 {% block content %}
 <div class="site-section mx-5 text-dark">
-    <div class="card-columns">
-        {%if posts %}
-            {% for post in posts %}
-            <div class="card">
-                {% if post.thumbnail.url != "/media/default.png" %}
-                <img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap">
-                {% endif %}
-                <div class="card-body">
-                    <div class="post-meta align-items-center text-left clearfix">
-                        <span class="d-inline-block mt-1 text-d text-muted">By <a href="#">{{post.author}}</a></span>
-                        <span class="d-inline-block mt-1 text-muted"> category: <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a></span>
-                        <span class="d-inline-block  mt-1 text-muted"> 
-                            Tags: 
-                        {% for tag in post.tag_name.all %}
-                        <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
-                        {% endfor %}
-                        </span>
-                        <span class="text-muted">&nbsp;-&nbsp; {{post.date|naturaltime}}</span>
+    <div class="container">
+        <div class="card-columns">
+            {%if posts %}
+                {% for post in posts %}
+                    <div class="row">
+                        <div class="col">
+                        <div class="card">
+                            {% if post.thumbnail.url != "/media/default.png" %}
+                            <a href="{{post.id}}"><img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap"></a>
+                            {% endif %}
+                            <div class="card-body">
+                                <div class="post-meta align-items-center text-left clearfix">
+                                    <span class="d-inline-block mt-1 text-d text-muted">By <a href="#">{{post.author}}</a></span>
+                                    <span class="d-inline-block mt-1 text-muted"> category: <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a></span>
+                                    <span class="d-inline-block  mt-1 text-muted"> 
+                                        Tags: 
+                                    {% for tag in post.tag_name.all %}
+                                    <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
+                                    {% endfor %}
+                                    </span>
+                                    <span class="text-muted">&nbsp;-&nbsp; {{post.date|naturaltime}}</span>
+                                </div>
+                                <h2><a href="{{post.id}}">{{post.title}}</a></h2>
+                                <p class="card-text">{{post.abstractBody}}..</p>
+                            </div>
+                        </div>
+                        </div>
                     </div>
-                    <h2><a href="{{post.id}}">{{post.title}}</a></h2>
-                    <p class="card-text">{{post.abstractBody}}..</p>
-                </div>
-            </div>
-            {% endfor %}
-        {%else%}
-        <h1>sorry no result </h1>
-        <h2>{{x}}</h2>
-        {%endif%}
+
+                {% endfor %}
+            {%else%}
+            <h1>sorry no result </h1>
+            <h2>{{x}}</h2>
+            {%endif%}
+        </div>
     </div>
     <!-- <div class="container">
       
