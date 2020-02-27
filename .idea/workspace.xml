@@ -2,9 +2,40 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Posts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+=======
+      <change afterPath="$PROJECT_DIR$/Posts/migrations/0002_remove_post_slug.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Posts/templates/posts/newPost.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/Explore.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/static/css/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/templates/posts/base.html" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/templates/posts/base.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/templates/posts/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/templates/posts/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/templates/posts/single.html" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/templates/posts/single.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/cebupacific-booking.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/dislike.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/hero_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_v_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/img_v_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/images/person_5.jpg" beforeDir="false" />
+>>>>>>> 9a7ca6b0d821c96b20e701bfd2198774e00abb6b
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,22 +51,34 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="admin" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="SWAP_SIDES_IN_COMPARE_BRANCHES" value="true" />
   </component>
   <component name="ProjectId" id="1XtMx4TSAGNwEARE8P954BinNjo" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/ourBlog/templates/admin" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/ourBlog/templates/admin/content" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/ourBlog/templates/admin" />
     </key>
@@ -51,12 +94,83 @@
       <option name="presentableId" value="Default" />
       <updated>1581861180900</updated>
     </task>
+    <task id="LOCAL-00001" summary="blog">
+      <created>1581868977552</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1581868977552</updated>
+    </task>
+    <task id="LOCAL-00002" summary="admin UI">
+      <created>1582322759772</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1582322759772</updated>
+    </task>
+    <task id="LOCAL-00003" summary="modify">
+      <created>1582558979155</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1582558979155</updated>
+    </task>
+    <task id="LOCAL-00004" summary="functionality to buttons-users">
+      <created>1582578638202</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1582578638202</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="blog" />
+    <MESSAGE value="admin UI" />
+    <MESSAGE value="modify" />
+    <MESSAGE value="functionality to buttons-users" />
+    <option name="LAST_COMMIT_MESSAGE" value="functionality to buttons-users" />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="593" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1581861192867">
+    <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1582508885457">
       <screen x="0" y="27" width="1920" height="1053" />
     </state>
-    <state x="593" y="407" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1581861192867" />
+    <state x="417" y="358" width="598" height="404" key="#com.intellij.fileTypes.FileTypeChooser/0.27.1920.1053@0.27.1920.1053" timestamp="1582508885457" />
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2" timestamp="1582578637937">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="579" y="121" width="782" height="919" key="CommitChangelistDialog2/0.27.1920.1053@0.27.1920.1053" timestamp="1582578637937" />
+    <state x="264" y="153" width="915" height="800" key="DiffContextDialog" timestamp="1582322629382">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="264" y="153" width="915" height="800" key="DiffContextDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582322629382" />
+    <state x="1010" y="127" width="810" height="851" key="ShowDiffWithBranchDialog" timestamp="1582538777482">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="1010" y="127" width="810" height="851" key="ShowDiffWithBranchDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582538777482" />
+    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2" timestamp="1582617457017">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="316" y="289" width="800" height="535" key="Vcs.Push.Dialog.v2/0.27.1920.1053@0.27.1920.1053" timestamp="1582617457017" />
+    <state x="593" y="407" key="com.intellij.ide.util.TipDialog" timestamp="1582211273651">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="593" y="407" key="com.intellij.ide.util.TipDialog/0.27.1920.1053@0.27.1920.1053" timestamp="1582211273651" />
+    <state x="384" y="272" width="672" height="678" key="search.everywhere.popup" timestamp="1581889325502">
+      <screen x="0" y="27" width="1920" height="1053" />
+    </state>
+    <state x="384" y="272" width="672" height="678" key="search.everywhere.popup/0.27.1920.1053@0.27.1920.1053" timestamp="1581889325502" />
   </component>
 </project>

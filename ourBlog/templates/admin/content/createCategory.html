@@ -1,0 +1,16 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+{% load i18n static %}
+{% block mainContent %}
+
+
+<form method="post"> {%csrf_token%}
+    {{category_form.as_p}}
+
+    <button type="submit">Add Category</button>
+
+</form>
+
+
+{%endblock%}

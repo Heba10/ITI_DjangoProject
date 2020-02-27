@@ -159,9 +159,13 @@ def getSearchData(request):
 			context={'posts':posts,'cats':cats}
 		else:
 			context={'cats':cats}
-		return render(request,'posts/index.html', context)
-	return HttpResponseRedirect('/posts/')
+	elif(re.match(titlePtrn, requiredSearch)):
+		posts=Post.objects.filter(title__contains=requiredSearch)
+		context={'posts':posts,'cats':cats}
+	else:
+		context={'cats':cats}
 
+	return render(request,'posts/index.html', context)
 
 def listTags(request,tagid):
 	tag=Tags.objects.get(id=tagid)
@@ -208,7 +212,7 @@ def editPost(request,postid):
 
 def deletePost(request,postid):
 	post = Post.objects.get(id=postid)
-	if(request.user==post.author or request.user.is_staff):		
+	if(request.user==post.author or request.user.is_staff):
 		post.delete()
 	return HttpResponseRedirect('/posts/')
 

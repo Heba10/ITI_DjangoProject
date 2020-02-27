@@ -1,0 +1,30 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+{% load i18n static %}
+{% block mainContent %}
+
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">Word</th>
+        <th><a href="addWord/" class="btn btn-info"><i class="fa fa-plus"></i> <strong>Word</strong></a>
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {%for word in word%}
+    <tr>
+        <td>{{word.word}}</td>
+        <td>
+            <a href="editWord/{{word.id}}" class="btn btn-success"><i class="far fa-edit"></i></a>
+            <a href="deleteWord/{{word.id}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+        </td>
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}
+

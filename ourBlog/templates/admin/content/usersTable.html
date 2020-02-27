@@ -1,0 +1,54 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+{% load i18n static %}
+{% block mainContent %}
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th scope="col">id</th>
+        <th scope="col">username</th>
+        <th scope="col">e-mail</th>
+        <th scope="col">first name</th>
+        <th scope="col">last name</th>
+        <th><a href="createUser/" class="btn btn-warning"><i class="fa fa-plus"></i> <strong>User</strong></a>
+        </th>
+    </tr>
+    </thead>
+
+    <tbody>
+    {%for users in users%}
+    {% if users.is_superuser %}
+    <tr class="table-danger">
+        {%else%}
+    <tr>
+        {%endif%}
+        <td>{{users.id}}</td>
+        <td>{{users.get_username }}</td>
+        <td>{{users.email}}</td>
+        <td>{{users.first_name}}</td>
+        <td>{{users.last_name}}</td>
+        {% if users.is_superuser %}
+        <td>
+            <a href="revoke/{{users.get_username}}" class="btn btn-info">Make User</a>
+        </td>
+        {%else%}
+        <td>
+            <a href="grant/{{users.get_username}}" class="btn btn-info">Make Admin</a>
+            <a href="editUser/{{users.get_username}}" class="btn btn-success"><i class="far fa-edit"></i></a>
+            <a href="delete/{{users.get_username}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+            {%if users.is_active is True %}
+            <a href="block/{{users.get_username}}" class="btn btn-primary"><i class="fas fa-lock"></i></a>
+            {%else%}
+            <a href="unblock/{{users.get_username}}" class="btn btn-warning"><i class="fas fa-unlock"></i></a>
+            {%endif%}
+        </td>
+        {%endif%}
+
+    </tr>
+    {%endfor%}
+    </tbody>
+</table>
+
+{% endblock %}
+
