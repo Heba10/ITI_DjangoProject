@@ -19,7 +19,7 @@ class Tags(models.Model):
 		
 class Post(models.Model):
 	title = models.CharField(max_length=100)
-	slug = models.SlugField(max_length=100)
+	# slug = models.SlugField(max_length=100)
 	body = models.TextField()
 	date = models.DateTimeField(auto_now_add=True)
 	cat_name =models.ForeignKey(Category, on_delete=models.DO_NOTHING)

@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import Post , Category ,Comments,Reply, Reaction, Subscribes,BadWord, Tags
 import json
 import re
+from .forms import postForm
 
 def homePage(request):
 	posts = Post.objects.all().order_by('date')
@@ -19,10 +20,14 @@ def displayPost(request,postid):#osama will rewrite this function to be simple
 	comments = Comments.objects.filter(post_name_id=postid)
 	cats = Category.objects.all()
 	data = []
+
 	for comment in comments :
 		try:
-			reply = Reply.objects.get(comment_name_id=comment.id)
-			dic = {'comm':comment , 'rep':reply}
+			rels=[]
+			reply = Reply.objects.filter(comment_name_id=comment.id)
+			for r in reply :
+				rels.append(r)
+			dic = {'comm':comment , 'rep':rels[:]}
 		except Exception as e:
 			dic={'comm':comment }
 		finally:
@@ -115,6 +120,7 @@ def addReply(request,comid):
 
 
 def getSearchData(request):
+	# if request.method =="GET":
 	requiredSearch = request.GET['requiredSearch']
 	# cat = Category.objects.get(name=requiredSearch)
 	# post = Post.objects.filter(cat_name=cat)
@@ -123,7 +129,72 @@ def getSearchData(request):
 	# if(requiredSearch=="none"):
 	# 	return HttpResponseRedirect('/posts/')
 	# else:
-	cat = Category.objects.get(name=requiredSearch)
-	post = Post.objects.filter(cat_name=cat).order_by('date')
-	context={'posts':post}
+	cats = Category.objects.all()
+	tagPtrn=r"^#[\S]+$"
+	titlePtrn=r"^[\S][\S ]+$"
+	if(re.match(tagPtrn, requiredSearch)):
+		try:
+			tag=Tags.objects.get(tag_name=requiredSearch)
+			posts=Post.objects.filter(tag_name=tag)
+			context={'posts':posts,'cats':cats}
+		except Exception as e:
+			context={'cats':cats}
+	elif(re.match(titlePtrn, requiredSearch)):
+		posts=Post.objects.filter(title__contains=requiredSearch)
+		context={'posts':posts,'cats':cats}
+	else:
+		context={'cats':cats}
+
 	return render(request,'posts/index.html', context)
+
+def listTags(request,tagid):
+	tag=Tags.objects.get(id=tagid)
+	posts=Post.objects.filter(tag_name=tag)
+	cats = Category.objects.all()
+	context={'posts':posts,'cats':cats}
+	return render(request,'posts/index.html', context)
+
+def addNewPost(request):
+	new_post=None
+	if request.method == 'POST':
+		newPost = postForm(data=request.POST)
+		if newPost.is_valid():
+			new_post = newPost.save(commit=False)
+			new_post.author = request.user
+			new_post.save()
+			# cats = Category.objects.all()
+			# context={'posts':posts,'cats':cats}
+			# return render(request,'posts/index.html', context)
+
+			return HttpResponseRedirect('/posts/')
+	else:
+		newPost = postForm()
+	cats = Category.objects.all()
+	context = {'newPost':newPost, 'cats':cats,}
+	return render(request,'posts/newPost.html', context)
+
+
+def editPost(request,postid):
+	post = Post.objects.get(id=postid)
+	if(request.user==post.author or request.user.is_staff):
+		if request.method=="POST":
+			form=postForm(request.POST,instance=post)
+			if form.is_valid():
+				form.save()
+				return HttpResponseRedirect('/posts/')
+		else:
+			form=postForm(instance=post)
+			cats = Category.objects.all()
+			context={'newPost':form, 'cats':cats}
+			return render(request,'posts/newPost.html',context)
+	else:
+		return HttpResponseRedirect('/posts/')
+
+
+def deletePost(request,postid):
+	post = Post.objects.get(id=postid)
+	if(request.user==post.author or request.user.is_staff):
+		post.delete()
+	return HttpResponseRedirect('/posts/')
+
+

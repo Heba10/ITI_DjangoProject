@@ -12,29 +12,30 @@ class UserRegisterForm(UserCreationForm):
 
 
 class AuthFormCheckStatus(AuthenticationForm):
-	error_messages ={
-		'invalid_login':(
-			"Please enter a correct username and password . Note that both "
-			"fields may be case-sensitive ."
-			),
-			'inactive':("This account is block.you should contact the admin "),
+    error_messages = {
+        'invalid_login': (
+            "Please enter a correct username and password . Note that both "
+            "fields may be case-sensitive ."
+        ),
+        'inactive': ("This account is block.you should contact the admin "),
 
-		}
+    }
 
-		def clean(self):
-			username = self.cleaned_data.get('username')
-			password = self.cleaned_data.get('password')
+    def clean(self):
+        username = self.cleaned_data.get('username')
+        password = self.cleaned_data.get('password')
 
-			if username is not None and password:
-				self.User_cache = authenticate(self.request , username=username , password=password)
-				if self.User_cache is None:
-					try:
-						user_temp = User.objects.get(username=username)
-					except:
-						user_temp =None
+        if username is not None and password:
+            self.User_cache = authenticate(self.request, username=username, password=password)
+            if self.User_cache is None:
+                try:
+                    user_temp = User.objects.get(username=username)
+                except:
+                    user_temp = None
 
-					if user_temp is not None :
-							self.confirm_login_allowed(user_temp)
+                if user_temp is not None:
+                    self.confirm_login_allowed(user_temp)
 
-					raise self.get_invalid_login_error()
-			return self.cleaned_data
+                raise self.get_invalid_login_error()
+        return self.cleaned_data
+

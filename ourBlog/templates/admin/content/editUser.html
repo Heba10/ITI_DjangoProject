@@ -1,0 +1,53 @@
+{%extends "admin/adminlte.html" %}
+
+{% load static %}
+{% load i18n static %}
+{% block mainContent %}
+
+<div class="container">
+        <!-- edit form column -->
+        <div class="col-lg-12 text-lg-center">
+            <h2>Edit Information</h2>
+            <br>
+            <br>
+        </div>
+        <div class="col-lg-8 push-lg-4 personal-info">
+             <form role="form" method="post" action="../saveState/{{user.id}}"> {%csrf_token%}
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">username</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="username" value="{{user.username}}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Email</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="email" name="email" value="{{user.email}}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">First name</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="fname" value="{{user.first_name}}" />
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label">Last Name</label>
+                    <div class="col-lg-9">
+                        <input class="form-control" type="text" name="lname" value="{{user.last_name}}" />
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <label class="col-lg-3 col-form-label form-control-label"></label>
+                    <div class="col-lg-9">
+                        <input type="submit" class="btn btn-secondary"  name="cancel" value="Cancel" />
+                        <input type="submit" class="btn btn-primary" value="Save Changes" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+</div>
+<hr />
+{% endblock %}

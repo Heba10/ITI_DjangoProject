@@ -7,29 +7,21 @@
         <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="/static/adminlte/index3.html" class="nav-link">Home</a>
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-        {% if user.has_usable_password %}
-          <a href="{% url 'admin:password_change' %}">{% trans 'Change password' %}</a>
-          {% endif %}
-      </li>
-      <li class="nav-item d-none d-sm-inline-block">
-       <a href="{% url 'admin:logout' %}">{% trans 'Log out' %}</a>
+        <a href="/../../posts" class="nav-link">Home</a>
       </li>
     </ul>
 
     <!-- SEARCH FORM -->
-    <form class="form-inline ml-3">
-      <div class="input-group input-group-sm">
-        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-        <div class="input-group-append">
-          <button class="btn btn-navbar" type="submit">
-            <i class="fas fa-search"></i>
-          </button>
-        </div>
-      </div>
-    </form>
+<!--    <form class="form-inline ml-3">-->
+<!--      <div class="input-group input-group-sm">-->
+<!--        <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">-->
+<!--        <div class="input-group-append">-->
+<!--          <button class="btn btn-navbar" type="submit">-->
+<!--            <i class="fas fa-search"></i>-->
+<!--          </button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </form>-->
 
   </nav>
   <!-- /.navbar -->
