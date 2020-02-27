@@ -8,7 +8,8 @@
 	</div>
 	<div class="row m-auto my-5 text-center d-flex justify-content-center text-dark">
 		<form method="post" enctype="multipart/form-data">
-			{% csrf_token %}
+			<div class="form-group">
+				{% csrf_token %}
 				Title
 		        <p>{{ newPost.title|add_class:'form-control' }}</p>
 		        Content
@@ -17,9 +18,10 @@
 		        <p>{{ newPost.tag_name|add_class:'form-control' }}</p>
 		        Category
 		        <p>{{ newPost.cat_name|add_class:'form-control' }}</p>
-		        Add Image
-		        <p>{{ newPost.thumbnail|add_class:'form-control' }}</p>
-		    <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+		        
+		        <p>{{ newPost.thumbnail|add_class:'form-control-file' }}</p>
+		    	<button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+			</div>
 		</form>
 	</div>
 </div>

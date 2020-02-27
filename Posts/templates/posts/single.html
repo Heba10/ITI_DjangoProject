@@ -8,8 +8,9 @@
         <div class="row blog-entries element-animate">
             <div class="col-lg-2"></div>
             <div class="col-md-12 col-lg-8 main-content">
-                <h3><strong>{{post.title}}</strong></h3>
-                <h6><a href="/posts/showuser/{{post.author_id}}" class="text-secondary"> By {{post.author}}</a></h6>
+                <h3 class="mb-0"><strong>{{post.title}}</strong></h3>
+                <span class="text-muted m-0"><small>{{post.date|naturaltime}}</small></span>
+                <h6> By<a href="/posts/showuser/{{post.author_id}}" class="text-brimary"> {{post.author}}</a></h6>
                 <div class="post-content-body">
                     {%if request.user == post.author or request.user.is_staff %}
                     <div class="dropdown post">
@@ -22,10 +23,10 @@
                     </div>
                     {%endif%}
                     <div class="row mb-5 mt-3">
-                        <div class="col-md-12 mb-2">
-                            {% if post.thumbnail.url != "/media/default.png" %}
+                        <div class="col-md-12 mb-2 text-center">
+                            
                             <img src="{{post.thumbnail.url}}" alt="Image placeholder" class="img-fluid rounded">
-                            {% endif %}
+                            
                         </div>
                     </div>
                     <p class="text-justify">{{post.body}} </p>
@@ -86,7 +87,7 @@
                             </div>
                             <div class="comment-body">
                                 <h3>{{d.comm.user_name}}</h3>
-                                <div class="meta text-secondary ">{{d.comm.date|naturaltime}}</div>
+                                <div class="meta text-secondary "><small>{{d.comm.date|naturaltime}}</small></div>
                                 {%if request.user == d.comm.user_name or request.user.is_staff %}
                                     <div class="dropdown comment">
                                       <button class="btn btn-link btn-lg text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -129,7 +130,7 @@
                                     <div class="comment-body">
                                         <h3>{{r.user_name}}</h3>
 
-                                        <div class="meta">{{r.date|naturaltime}}</div>
+                                        <div class="meta"><small>{{r.date|naturaltime}}</small></div>
                                         {%if request.user == d.comm.user_name or request.user.is_staff %}
                                             <div class="dropdown replyd">
                                               <button class="btn btn-link btn-lg text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

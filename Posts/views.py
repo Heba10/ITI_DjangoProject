@@ -8,7 +8,7 @@ from django.core.paginator import Paginator
 
 def homePage(request):
 	posts = Post.objects.all()
-	paginator = Paginator(posts,2)
+	paginator = Paginator(posts,4)
 	page = request.GET.get('page',1)
 	p = paginator.page(page)
 	for post in posts:
@@ -172,7 +172,7 @@ def addNewPost(request):
 	else:
 		newPost = postForm()
 	cats = Category.objects.all()
-	context = {'newPost':newPost, 'cats':cats,'status':"new"}
+	context = {'newPost':newPost, 'cats':cats,'status':"New"}
 	return render(request,'posts/newPost.html', context)
 
 
@@ -187,7 +187,7 @@ def editPost(request,postid):
 		else:
 			form=postForm(instance=post)
 			cats = Category.objects.all()
-			context={'newPost':form, 'cats':cats,'status':"edit"}
+			context={'newPost':form, 'cats':cats,'status':"Edit"}
 			return render(request,'posts/newPost.html',context)
 	else:
 		return HttpResponseRedirect('/posts/')

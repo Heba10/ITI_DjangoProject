@@ -2,6 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+
 <div class="site-section mx-5 text-dark">
     <div class="container">
         <div class="card-columns">
@@ -10,13 +11,13 @@
                     <div class="row mb-2 mx-2">
                         <div class="col">
                         <div class="card">
-                            {% if post.thumbnail.url != "/media/default.png" %}
+                            
                             <a href="{{post.id}}"><img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap"></a>
-                            {% endif %}
+                            
                             <div class="card-body">
                                 <p class="text-muted m-0"><small>{{post.date|naturaltime}}</small></p>
                                 
-                                <h2><a href="/posts/{{post.id}}">{{post.title}}</a></h2>
+                                <h2><a href="/posts/{{post.id}}"><strong>{{post.title}}</strong></a></h2>
                                 <p class="card-text text-justify">{{post.abstractBody}}..</p>
                                 <div class="post-meta align-items-center text-left clearfix">
                                     <span class="d-inline-block mt-1 text-d text-muted">By <a href="/posts/showuser/{{post.author_id}}">{{post.author}}</a></span>
@@ -40,6 +41,32 @@
             {%endif%}
         </div>
     </div>
+</div>
+
+<div>
+    <ul class="pagination">
+
+        {% if posts.has_previous %}
+            <li class="page-item mx-5">
+              <a class="page-link py-1" href="?page={{ posts.previous_page_number }}" tabindex="-1"><strong>Previous</strong></a>
+            </li>
+        {% endif %}
+
+        {% for num in posts.paginator.page_range %}
+            {% if posts.number == num %}
+                <strong class="text-dark">{{ num }}</strong>
+            {% elif num > posts.number|add:'-3' and num > posts.number|add:'3' %}
+                {{ num }}
+            {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+            <li class="page-item mx-5">
+              <a class="page-link py-1" href="?page={{ posts.next_page_number }}" tabindex="-1"><strong>Next</strong></a>
+            </li>
+        {% endif %}
+
+    </ul>
 </div>
 {% endblock %}
 
