@@ -7,13 +7,17 @@
         <div class="card-columns">
             {%if posts %}
                 {% for post in posts %}
-                    <div class="row">
+                    <div class="row mb-2 mx-2">
                         <div class="col">
                         <div class="card">
                             {% if post.thumbnail.url != "/media/default.png" %}
                             <a href="{{post.id}}"><img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap"></a>
                             {% endif %}
                             <div class="card-body">
+                                <p class="text-muted m-0"><small>{{post.date|naturaltime}}</small></p>
+                                
+                                <h2><a href="/posts/{{post.id}}">{{post.title}}</a></h2>
+                                <p class="card-text text-justify">{{post.abstractBody}}..</p>
                                 <div class="post-meta align-items-center text-left clearfix">
                                     <span class="d-inline-block mt-1 text-d text-muted">By <a href="/posts/showuser/{{post.author_id}}">{{post.author}}</a></span>
                                     <span class="d-inline-block mt-1 text-muted"> category: <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a></span>
@@ -23,10 +27,7 @@
                                     <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
                                     {% endfor %}
                                     </span>
-                                    <span class="text-muted">&nbsp;-&nbsp; {{post.date|naturaltime}}</span>
                                 </div>
-                                <h2><a href="{{post.id}}">{{post.title}}</a></h2>
-                                <p class="card-text">{{post.abstractBody}}..</p>
                             </div>
                         </div>
                         </div>

@@ -8,21 +8,27 @@
         <div class="row blog-entries element-animate">
             <div class="col-lg-2"></div>
             <div class="col-md-12 col-lg-8 main-content">
-                <h3><a href="/posts/showuser/{{post.author_id}}"> By {{post.author}}</a></h3>
+                <h3><strong>{{post.title}}</strong></h3>
+                <h6><a href="/posts/showuser/{{post.author_id}}" class="text-secondary"> By {{post.author}}</a></h6>
                 <div class="post-content-body">
+                    {%if request.user == post.author or request.user.is_staff %}
+                    <div class="dropdown post">
+                      <button class="btn btn-link btn-lg text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/posts/editpost/{{post.id}}">Edit</a>
+                        <a class="dropdown-item" href="/posts/deletepost/{{post.id}}">Delete</a>
+                      </div>
+                    </div>
+                    {%endif%}
                     <div class="row mb-5 mt-3">
-                        <div class="col-md-12 mb-4">
+                        <div class="col-md-12 mb-2">
                             {% if post.thumbnail.url != "/media/default.png" %}
                             <img src="{{post.thumbnail.url}}" alt="Image placeholder" class="img-fluid rounded">
                             {% endif %}
                         </div>
                     </div>
-                    <h3> {{post.title}}</a></h3>
-                    {%if request.user == post.author or request.user.is_staff %}
-                        <h3><a href="/posts/editpost/{{post.id}}"> edit </a></h3>
-                        <h3><a href="/posts/deletepost/{{post.id}}"> delete </a></h3>
-                    {%endif%}
-                    <p>{{post.body}} </p>
+                    <p class="text-justify">{{post.body}} </p>
 
                 </div>
 
@@ -42,6 +48,10 @@
                     <div class="row text-center smaller bg-light">
                       {% if request.user.is_authenticated %}
                         <div class="col-4" style="color: #2f89fc;" id="imgState">
+                            <div class="changeLike">
+                                <u>like</u>
+                                <u>dislike</u>
+                            </div>
                             <u id="like">like</u>
                         </div>
                         {% endif %}
@@ -78,7 +88,13 @@
                                 <h3>{{d.comm.user_name}}</h3>
                                 <div class="meta text-secondary ">{{d.comm.date|naturaltime}}</div>
                                 {%if request.user == d.comm.user_name or request.user.is_staff %}
-                                    <h3><a href="/posts/{{d.comm.id}}/deletecomment"> delete </a></h3>
+                                    <div class="dropdown comment">
+                                      <button class="btn btn-link btn-lg text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      </button>
+                                      <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                        <a class="dropdown-item" href="/posts/{{d.comm.id}}/deletecomment">Delete</a>
+                                      </div>
+                                    </div>
                                 {%endif%}  
                                 <p class="text-dark">{{d.comm.content}}</p>
                                 
@@ -115,7 +131,13 @@
 
                                         <div class="meta">{{r.date|naturaltime}}</div>
                                         {%if request.user == d.comm.user_name or request.user.is_staff %}
-                                            <h3><a href="/posts/{{r.id}}/deletereply"> delete </a></h3>
+                                            <div class="dropdown replyd">
+                                              <button class="btn btn-link btn-lg text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                              </button>
+                                              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item" href="/posts/{{r.id}}/deletereply">Delete</a>
+                                              </div>
+                                            </div>
                                         {%endif%} 
                                         <p class="text-dark">{{r.content}}</p>
                                     </div>
@@ -246,9 +268,25 @@
         }
     }
 
-    // like.addEventListener('mouseover', (ev)=>{
-    //     console.log("over")
-    // });
+    $(document).ready(function(){
+        $(".changeLike").hide();
+        $("u#like").mouseover(
+            function(){
+              $(".changeLike").show();
+            }); 
+        $("u#like").mouseout(
+            function(){
+            $(".changeLike").hide();
+        });   
+
+        // $(".changeLike").hover(
+        //     function(){
+        //       $(".changeLike").show();
+        //     }
+        //     ,function(){
+        //         $(".changeLike").hide();
+        //     }); 
+    });
 </script>
 
 {% endblock %}

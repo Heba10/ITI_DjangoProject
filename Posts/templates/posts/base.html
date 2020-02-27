@@ -18,8 +18,47 @@
         <link rel="stylesheet" href="{% static 'publicStatic/css/bootstrap-datepicker.css' %}">
         <link rel="stylesheet" href="{% static 'publicStatic/fonts/flaticon/font/flaticon.css' %}">
         <link rel="stylesheet" href="{% static 'publicStatic/css/aos.css' %}">
-
         <link rel="stylesheet" href="{% static 'publicStatic/css/style.css' %}">
+
+        <style>
+            .card-columns {
+                column-count: 2 !important;
+                }
+            .post-content-body{
+                position: relative;
+            }
+            .comment-body{
+                position: relative;
+            }
+            div.post, div.comment{
+                position: absolute;
+                right: 0px;
+                top: 0px;
+                z-index: 1;
+            }
+            div.replyd{
+                position: absolute;
+                right: 30px;
+                top: 0px;
+                z-index: 1;
+            }
+            #like, #parent {
+                cursor: pointer;
+            }
+            a:hover {
+              background-color: white;
+              color: black !important;
+            }
+            #imgState{
+                position: relative;
+            }
+            .changeLike{
+                position: absolute;
+                right: 80px;
+                top: -20px;
+                z-index: 1;
+            }
+        </style>
     </head>
     <body>
 
@@ -38,9 +77,9 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-12">
-                            <nav class="navbar navbar-expand-lg">
+                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-white">
 
-                                <a class="navbar-brand" href="/posts">
+                                <a class="navbar-brand px-1" href="/posts">
                                     <strong>Explore</strong>
                                 </a>
 
@@ -49,7 +88,7 @@
                                 <div class="navbar-collapse collapse show" id="worldNav" style="">
                                     <div id="search-wrapper" class="ml-auto">
                                         <form method="get" action="/posts/searchResult">
-                                            <input type="text" placeholder="Search something..." name="requiredSearch">
+                                            <input class="form-control mr-sm-2" type="text" placeholder="Search something..." name="requiredSearch">
                                             <div id="close-icon"></div>
                                             <input class="d-none" id="searchText" type="submit" value="">
                                         </form>
@@ -68,7 +107,7 @@
                                             </li>
                                         {%endif%}
                                         <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
+                                            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Category</a>
                                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
                                                 {% block cat %}
@@ -89,13 +128,13 @@
                                             </div>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="about">About</a>
+                                            <a class="nav-link text-white" href="about">About</a>
                                         </li>
                                         <li class="nav-item">
                                             {% if request.user.is_authenticated %}
-                                                <span class="nav-link"><a href="/logout">Logout</a></span>
+                                                <span class="nav-link text-white"><a href="/logout" class="text-white py-2 px-1">Logout</a></span>
                                             {% else %}
-                                                <span class="nav-link"><a href="/login">Login</a>/<a href="/register">Register</a></span>
+                                                <span class="nav-link text-white"><a href="/login" class="text-white">Login</a>/<a href="/register" class="text-white">Register</a></span>
                                             {% endif %}
                                         </li>
                                     </ul>
@@ -271,6 +310,15 @@
                     }
                 }
             }
+            // $(document).ready(function(){
+            //     $(".post-content-body").hover(
+            //         function(){
+            //           $("div.post").show();
+            //         }
+            //         ,function(){
+            //             $("div.post").hide();
+            //         });     
+            // });
         </script>
 
         {% block scriptBlock %}

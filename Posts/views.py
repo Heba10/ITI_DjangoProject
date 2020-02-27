@@ -4,16 +4,20 @@ from .models import Post , Category ,Comments,Reply, Reaction, Subscribes,BadWor
 import json
 import re
 from .forms import postForm
+from django.core.paginator import Paginator
 
 def homePage(request):
 	posts = Post.objects.all()
+	paginator = Paginator(posts,2)
+	page = request.GET.get('page',1)
+	p = paginator.page(page)
 	for post in posts:
 		dislikeReact = Reaction.objects.filter(react="dislike", post_name=post.id).count()
 		if dislikeReact==10:
 			post.delete()	#needs to be tested
 	posts = Post.objects.all().order_by('date')
 	cats = Category.objects.all()
-	context={'posts':posts,'cats':cats}
+	context={'posts':p,'cats':cats}
 	return render(request,'posts/index.html', context)
 
 def about(request):
