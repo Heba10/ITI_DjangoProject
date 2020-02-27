@@ -5,6 +5,7 @@ import json
 import re
 from .forms import postForm
 from django.core.paginator import Paginator
+from django.core.mail import send_mail
 
 def homePage(request):
 	posts = Post.objects.all()
@@ -83,6 +84,16 @@ def getSubscribeData(request):
 		subscribes, created = Subscribes.objects.get_or_create(user_name_id=userId, cat_name_id=catNum)
 		if created==True:
 			cat.append(subscribes.cat_name.id)
+			try:
+				user=request.user
+				cato=Category.objects.get(id=catNum)
+				subject = 'category subscription'
+				message = 'u have subscibed in :' +cato.name+' use this url to visit this category http://127.0.0.1:8000/posts/listcat/'+str(cato.id)
+				recepient = user.email
+				send_mail(subject,message, 'osamaeltayar011100', [recepient], fail_silently = False)
+			except Exception as e:
+				print(e)
+			
 		else:
 			subscribes.delete()
 	return HttpResponse(json.dumps({'categoryNum':cat}))
@@ -182,7 +193,9 @@ def editPost(request,postid):
 		if request.method=="POST":
 			form=postForm(request.POST,instance=post)
 			if form.is_valid():
-				form.save()
+				nform=form.save(commit=False)
+				nform.thumbnail = request.FILES.get('thumbnail')
+				nform.save()
 				return HttpResponseRedirect('/posts/')
 		else:
 			form=postForm(instance=post)
