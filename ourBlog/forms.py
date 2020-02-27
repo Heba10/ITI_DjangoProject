@@ -32,6 +32,10 @@ class createBadWordForm(forms.ModelForm):
             'word': forms.TextInput(attrs={'class': 'form-control'}),
         }
 
-
-
-        #ممكن تعمل الchange password هنا
+class changePassForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = {'password'}
+        widgets = {
+            'password': forms.TextInput(attrs={'class': 'form-control'}),
+        }

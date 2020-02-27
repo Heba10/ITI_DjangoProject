@@ -18,11 +18,12 @@ from django.urls import path
 from ourBlog import views
 
 urlpatterns = [
-    path('admin/',views.adminHome),
+    path('admin/', views.adminHome),
     path('posts/', views.posts),
     path('newPost/', views.createUser),
     path('delPost/<post_id>', views.deletePost),
     path('users/', views.users),
+    path('changePass/<username>', views.changePass),
     path('users/revoke/<username>', views.revokeUser),
     path('users/grant/<username>', views.grantUser),
     path('users/block/<username>', views.blockUser),

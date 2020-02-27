@@ -2,7 +2,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from Posts.models import Post, Category, BadWord
-from .forms import createUserForm, createCategoryForm, createBadWordForm
+from .forms import createUserForm, createCategoryForm, createBadWordForm,changePassForm
 
 
 # Create your views here.
@@ -189,3 +189,18 @@ def editWord(request, id):
         badWord_form = createBadWordForm(instance=word)
         context = {'badWord_form': badWord_form}
         return render(request, 'admin/content/createBadWord.html', context)
+
+
+def changePass(request,username):
+    user = User.objects.get(username=username)
+    if request.method == "POST":
+        changePass_form = changePassForm(request.POST, instance=user)
+        if changePass_form.is_valid():
+            changePass_form.save()
+            user.save()
+            return HttpResponseRedirect("/ourBlog/users")
+    else:
+        changePass_form = changePassForm(instance=user)
+        context = {'changePass_form': changePass_form}
+        return render(request, 'admin/content/changePass.html', context)
+
