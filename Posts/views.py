@@ -146,8 +146,6 @@ def getSearchData(request):
 		context={'cats':cats}
 
 	return render(request,'posts/index.html', context)
-	# return HttpResponseRedirect('/posts/')
-
 
 def listTags(request,tagid):
 	tag=Tags.objects.get(id=tagid)
@@ -172,13 +170,13 @@ def addNewPost(request):
 	else:
 		newPost = postForm()
 	cats = Category.objects.all()
-	context = {'newPost':newPost, 'cats':cats}
+	context = {'newPost':newPost, 'cats':cats,}
 	return render(request,'posts/newPost.html', context)
 
 
 def editPost(request,postid):
 	post = Post.objects.get(id=postid)
-	if(request.user==post.author):
+	if(request.user==post.author or request.user.is_staff):
 		if request.method=="POST":
 			form=postForm(request.POST,instance=post)
 			if form.is_valid():
@@ -195,7 +193,7 @@ def editPost(request,postid):
 
 def deletePost(request,postid):
 	post = Post.objects.get(id=postid)
-	if(request.user==post.author):		
+	if(request.user==post.author or request.user.is_staff):
 		post.delete()
 	return HttpResponseRedirect('/posts/')
 

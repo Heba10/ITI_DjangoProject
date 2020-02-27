@@ -1,31 +1,29 @@
 {%extends "admin/adminlte.html" %}
 
 {% load static %}
- {% load i18n static %}
+{% load i18n static %}
 {% block mainContent %}
 
- <table class="table table-hover">
-  <thead>
+<table class="table table-hover">
+    <thead>
     <tr>
-      <th scope="col">username</th>
-      <th scope="col">e-mail</th>
-      <th scope="col">full name</th>
-      <th scope="col">date</th>
+        <th scope="col">Word</th>
+        <th><a href="addWord/" class="btn btn-info"><i class="fa fa-plus"></i> <strong>Word</strong></a>
+        </th>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-   {%for post in post%}
+    <tbody>
+    {%for word in word%}
     <tr>
-      <td>{{post.title}}</td>
-      <td>{{post.author}</td>
-      <td>{{post.cat_name}}</td>
-      <td>{{post.date}}</td>
-        <td>Edit</td>
-        <td>Delete</td>
+        <td>{{word.word}}</td>
+        <td>
+            <a href="editWord/{{word.id}}" class="btn btn-success"><i class="far fa-edit"></i></a>
+            <a href="deleteWord/{{word.id}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+        </td>
     </tr>
-  {%endfor%}
-  </tbody>
+    {%endfor%}
+    </tbody>
 </table>
 
 {% endblock %}
