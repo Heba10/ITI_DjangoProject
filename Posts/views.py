@@ -237,3 +237,23 @@ def deletereply(request,repid):
 	if(request.user==reply.user_name or request.user.is_staff):
 		reply.delete()
 	return HttpResponseRedirect('/posts/'+str(comment.post_name_id))
+
+
+def addTag(request):
+	if request.method =="POST":
+		con=request.POST.get('othertag')
+		tagPtrn=r"^#[\S]+$"
+		newTag=con.split(" ")
+		flag = 1
+		for ourTag in newTag :
+			if(re.match(tagPtrn, ourTag)):
+				allTags = Tags.objects.all()
+				for eachTag in allTags:
+					if(eachTag.tag_name == ourTag):
+						flag = 0
+					else:
+						continue
+				if flag == 1:
+					ta = Tags(tag_name=ourTag)
+					ta.save()
+	return HttpResponseRedirect('/posts/newPost') 
