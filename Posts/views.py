@@ -22,7 +22,8 @@ def homePage(request):
 	return render(request,'posts/index.html', context)
 
 def about(request):
-	return render(request,'posts/about.html')
+	cats = Category.objects.all()
+	return render(request,'posts/about.html',{'cats':cats})
 
 def displayPost(request,postid):#osama will rewrite this function to be simple
 	post = Post.objects.get(id=postid)
@@ -62,8 +63,8 @@ def getLikeData(request):
 		reaction.save()
 	else:
 		pass
-	likeReact = Reaction.objects.filter(react="like").count()
-	dislikeReact = Reaction.objects.filter(react="dislike").count()
+	likeReact = Reaction.objects.filter(post_name_id=postId, react="like").count()
+	dislikeReact = Reaction.objects.filter(post_name_id=postId, react="dislike").count()
 
 	return HttpResponse(json.dumps({'reactType':reaction.react, 'likeReact':likeReact, 'dislikeReact':dislikeReact}))
 

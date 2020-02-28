@@ -130,7 +130,7 @@
                                         <h3>{{r.user_name}}</h3>
 
                                         <div class="meta"><small>{{r.date|naturaltime}}</small></div>
-                                        {%if request.user == d.comm.user_name or request.user.is_staff %}
+                                        {%if request.user == r.user_name or request.user.is_staff %}
                                             <div class="dropdown replyd">
                                               <button class="btn btn-link btn-lg text-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                               </button>
