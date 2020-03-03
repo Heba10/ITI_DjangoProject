@@ -2,72 +2,71 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
+
 <div class="site-section mx-5 text-dark">
-    <div class="card-columns">
-        {%if posts %}
-            {% for post in posts %}
-            <div class="card">
-                {% if post.thumbnail.url != "/media/default.png" %}
-                <img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap">
-                {% endif %}
-                <div class="card-body">
-                    <div class="post-meta align-items-center text-left clearfix">
-                        <span class="d-inline-block mt-1 text-d text-muted">By <a href="#">{{post.author}}</a></span>
-                        <span class="d-inline-block mt-1 text-muted"> category: <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a></span>
-                        <span class="d-inline-block  mt-1 text-muted"> 
-                            Tags: 
-                        {% for tag in post.tag_name.all %}
-                        <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
-                        {% endfor %}
-                        </span>
-                        <span class="text-muted">&nbsp;-&nbsp; {{post.date|naturaltime}}</span>
-                    </div>
-                    <h2><a href="{{post.id}}">{{post.title}}</a></h2>
-                    <p class="card-text">{{post.abstractBody}}..</p>
-                </div>
-            </div>
-            {% endfor %}
-        {%else%}
-        <h1>sorry no result </h1>
-        <h2>{{x}}</h2>
-        {%endif%}
-    </div>
-    <!-- <div class="container">
-      
-        <div class="row">
-            {% for post in posts %}
-            <div class="col-lg-4 mb-4">
-                <div class="entry2">
-                    <a href="single.html"><img src="{{post.thumbnail.url}}" alt="Image" class="img-fluid rounded"></a>
-                    <div class="excerpt">
-                        <span class="post-category text-white bg-secondary mb-3">Politics</span>
-
-                        <h2><a href="{{post.slug}}">{{post.title}}</a></h2>
-                        <div class="post-meta align-items-center text-left clearfix">
-                            <span class="d-inline-block mt-1">By <a href="#">{{post.author}}</a></span>
-                            <span>&nbsp;-&nbsp; {{post.date|naturaltime}}</span>
+    <div class="container">
+        <div class="card-columns">
+            {%if posts %}
+                {% for post in posts %}
+                    <div class="row mb-2 mx-2">
+                        <div class="col">
+                        <div class="card">
+                            
+                            <a href="{{post.id}}"><img class="card-img-top" src="{{post.thumbnail.url}}" width="400px" height="300px" alt="Card image cap"></a>
+                            
+                            <div class="card-body">
+                                <p class="text-muted m-0"><small>{{post.date|naturaltime}}</small></p>
+                                
+                                <h2><a href="/posts/{{post.id}}"><strong>{{post.title}}</strong></a></h2>
+                                <p class="card-text text-justify">{{post.abstractBody}}..</p>
+                                <div class="post-meta align-items-center text-left clearfix">
+                                    <span class="d-inline-block mt-1 text-d text-muted">By <a href="/posts/showuser/{{post.author_id}}">{{post.author}}</a></span>
+                                    <span class="d-inline-block mt-1 text-muted"> category: <a href="/posts/listcat/{{post.cat_name_id}}">{{post.cat_name}}</a></span>
+                                    <span class="d-inline-block  mt-1 text-muted"> 
+                                        Tags: 
+                                    {% for tag in post.tag_name.all %}
+                                    <a href="/posts/listtag/{{tag.id}}">{{tag.tag_name}}</a>, 
+                                    {% endfor %}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
-
-                        <p>{{post.abstractBody}}</p>
-                        <p><a href="#">Read More</a></p>
+                        </div>
                     </div>
-                </div>
-            </div>
-            {% endfor %}
+
+                {% endfor %}
+            {%else%}
+            <h1>sorry no result </h1>
+            <h2>{{x}}</h2>
+            {%endif%}
         </div>
-        <div class="row text-center pt-5 border-top">
-            <div class="col-md-12">
-                <div class="custom-pagination">
-                    <span>1</span>
-                    <a href="#">2</a>
-                    <a href="#">3</a>
-                    <a href="#">4</a>
-                    <span>...</span>
-                    <a href="#">15</a>
-                </div>
-            </div>
-        </div>
-    </div> -->
+    </div>
+</div>
+
+<div>
+    <ul class="pagination">
+
+        {% if posts.has_previous %}
+            <li class="page-item mx-5">
+              <a class="page-link py-1" href="?page={{ posts.previous_page_number }}" tabindex="-1"><strong>Previous</strong></a>
+            </li>
+        {% endif %}
+
+        {% for num in posts.paginator.page_range %}
+            {% if posts.number == num %}
+                <strong class="text-dark">{{ num }}</strong>
+            {% elif num > posts.number|add:'-3' and num > posts.number|add:'3' %}
+                {{ num }}
+            {% endif %}
+        {% endfor %}
+
+        {% if posts.has_next %}
+            <li class="page-item mx-5">
+              <a class="page-link py-1" href="?page={{ posts.next_page_number }}" tabindex="-1"><strong>Next</strong></a>
+            </li>
+        {% endif %}
+
+    </ul>
 </div>
 {% endblock %}
 

@@ -1,25 +1,28 @@
 {%extends "admin/adminlte.html" %}
 
 {% load static %}
- {% load i18n static %}
+{% load i18n static %}
 {% block mainContent %}
- <table class="table table-hover">
-  <thead>
+<table class="table table-hover">
+    <thead>
     <tr>
-      <th scope="col">Category Name</th>
+        <th scope="col">Category Name</th>
+        <th><a href="addCat/" class="btn btn-info"><i class="fa fa-plus"></i>
+            <strong>Category</strong></a>
     </tr>
-  </thead>
+    </thead>
 
-  <tbody>
-   {%for cat in cat%}
+    <tbody>
+    {%for cat in cat%}
     <tr>
-      <td>{{cat.name}}</td>
-
-        <td>Edit</td>
-        <td>Delete</td>
+        <td>{{cat.name}}</td>
+        <td>
+            <a href="editCat/{{cat.id}}" class="btn btn-success"><i class="far fa-edit"></i></a>
+            <a href="deleteCat/{{cat.id}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
+        </td>
     </tr>
-  {%endfor%}
-  </tbody>
+    {%endfor%}
+    </tbody>
 </table>
 
 {% endblock %}

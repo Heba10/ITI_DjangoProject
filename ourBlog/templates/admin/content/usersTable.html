@@ -11,8 +11,8 @@
         <th scope="col">e-mail</th>
         <th scope="col">first name</th>
         <th scope="col">last name</th>
-        <th scope="col">admin</th>
-        <th scope="col">Actions</th>
+        <th><a href="createUser/" class="btn btn-warning"><i class="fa fa-plus"></i> <strong>User</strong></a>
+        </th>
     </tr>
     </thead>
 
@@ -28,7 +28,6 @@
         <td>{{users.email}}</td>
         <td>{{users.first_name}}</td>
         <td>{{users.last_name}}</td>
-        <td>{{users.is_superuser}}</td>
         {% if users.is_superuser %}
         <td>
             <a href="revoke/{{users.get_username}}" class="btn btn-info">Make User</a>
@@ -36,8 +35,13 @@
         {%else%}
         <td>
             <a href="grant/{{users.get_username}}" class="btn btn-info">Make Admin</a>
+            <a href="editUser/{{users.get_username}}" class="btn btn-success"><i class="far fa-edit"></i></a>
             <a href="delete/{{users.get_username}}" class="btn btn-danger"><i class="far fa-trash-alt"></i></a>
-            <a href="block/{{users.get_username}}" class="btn btn-danger"><i class="fa fa-ban"></i></a>
+            {%if users.is_active is True %}
+            <a href="block/{{users.get_username}}" class="btn btn-primary"><i class="fas fa-lock"></i></a>
+            {%else%}
+            <a href="unblock/{{users.get_username}}" class="btn btn-warning"><i class="fas fa-unlock"></i></a>
+            {%endif%}
         </td>
         {%endif%}
 

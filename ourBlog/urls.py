@@ -14,16 +14,30 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
+
 from ourBlog import views
 
 urlpatterns = [
-    path('users/', views.users),
-    path('categories/', views.categories),
+    path('admin/', views.adminHome),
     path('posts/', views.posts),
-    path('words/', views.words),
+    path('posts/newPost', views.createUser),
     path('delPost/<post_id>', views.deletePost),
+    path('users/', views.users),
+    path('changePass/<username>', views.changePass),
     path('users/revoke/<username>', views.revokeUser),
     path('users/grant/<username>', views.grantUser),
     path('users/block/<username>', views.blockUser),
+    path('users/unblock/<username>', views.unblockUser),
     path('users/delete/<username>', views.delUser),
+    path('users/editUser/<username>', views.editUser),
+    path('users/saveState/<id>', views.saveState),
+    path('users/createUser/', views.createUser),
+    path('categories/', views.categories),
+    path('categories/editCat/<id>', views.editCat),
+    path('categories/deleteCat/<id>', views.deleteCat),
+    path('categories/addCat/', views.addCat),
+    path('words/', views.words),
+    path('words/editWord/<id>', views.editWord),
+    path('words/deleteWord/<id>', views.deleteWord),
+    path('words/addWord/', views.addWord),
 ]

@@ -2,6 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9a29e1b-a637-4bea-a493-992c04cd7871" name="Default Changelist" comment="">
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/Posts/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+=======
       <change afterPath="$PROJECT_DIR$/Posts/migrations/0002_remove_post_slug.py" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Posts/templates/posts/newPost.html" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/static/images/Explore.jpg" afterDir="false" />
@@ -31,9 +36,13 @@
       <change beforePath="$PROJECT_DIR$/static/images/person_3.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/person_4.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/person_5.jpg" beforeDir="false" />
+<<<<<<< HEAD
 =======
       <change beforePath="$PROJECT_DIR$/ourBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/views.py" afterDir="false" />
 >>>>>>> Stashed changes
+=======
+>>>>>>> 9a7ca6b0d821c96b20e701bfd2198774e00abb6b
+>>>>>>> 7c03a10aad56d24b3f1607eda73ef75691a021f6
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
