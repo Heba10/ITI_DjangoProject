@@ -16,6 +16,7 @@
       <change beforePath="$PROJECT_DIR$/Posts/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/Posts/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/blog/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/blog/settings.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+<<<<<<< Updated upstream
       <change beforePath="$PROJECT_DIR$/static/images/cebupacific-booking.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/dislike.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/hero_1.jpg" beforeDir="false" />
@@ -30,6 +31,9 @@
       <change beforePath="$PROJECT_DIR$/static/images/person_3.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/person_4.jpg" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/images/person_5.jpg" beforeDir="false" />
+=======
+      <change beforePath="$PROJECT_DIR$/ourBlog/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/ourBlog/views.py" afterDir="false" />
+>>>>>>> Stashed changes
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
