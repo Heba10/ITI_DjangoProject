@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from Posts.models import Post, Category, BadWord
@@ -8,7 +8,9 @@ from .forms import createUserForm, createCategoryForm, createBadWordForm,changeP
 # Create your views here.
 
 def adminHome(request):
-    return render(request, 'admin/content/adminHome.html')
+    if(request.user.is_staff):
+        return render(request, 'admin/content/adminHome.html')
+    return HttpResponse("<h1>You're not allowed to access this page</h1>")
 
 
 def users(request):

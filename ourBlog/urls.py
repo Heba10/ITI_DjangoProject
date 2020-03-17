@@ -20,7 +20,7 @@ from ourBlog import views
 urlpatterns = [
     path('admin/', views.adminHome),
     path('posts/', views.posts),
-    path('/posts/newPost', views.createUser),
+    path('posts/newPost', views.createUser),
     path('delPost/<post_id>', views.deletePost),
     path('users/', views.users),
     path('changePass/<username>', views.changePass),
